@@ -2,9 +2,9 @@
 Documentation for hax-schema, the schema that defines for the h-a-x editor how it can interface with a web component implementing it. hax-schema typically is defined in a stand alone json file which is then referenced in the element via a method similar to the following:
 
 ```js
-  static get haxProperties() {
-    return new URL('./lib/block-quote.haxProperties.json', import.meta.url).href;
-  }
+static get haxProperties() {
+  return new URL('./lib/block-quote.haxProperties.json', import.meta.url).href;
+}
 ```
 
 [example.json](example.json) has an example derived from the [block-quote element](https://github.com/haxtheweb/webcomponents/blob/master/elements/course-design/lib/block-quote.haxProperties.json)
@@ -19,19 +19,17 @@ Initial metadata settings associated with controls built into the interface. Exp
 - **designSystem** - the design system can define if accent, primary, card, text (font), and special design treatment form inputs should be shown.
 
 ```json
-{
-  "api": "1",
-  "type": "element",
-  "canScale": false,
-  "canEditSource": true,
-  "hideDefaultSettings": true,
-  "designSystem": {
-    "accent": true,
-    "primary": false,
-    "card": true,
-    "text": false,
-    "designTreatment": false
-  }
+"api": "1",
+"type": "element",
+"canScale": false,
+"canEditSource": true,
+"hideDefaultSettings": true,
+"designSystem": {
+  "accent": true,
+  "primary": false,
+  "card": true,
+  "text": false,
+  "designTreatment": false
 }
 ```
 
@@ -40,22 +38,22 @@ Gizmo is what provides the listing in h-a-x editor as far as what the block is i
 
 ```json
 "gizmo": {
-    "title": "Block quote",
-    "description": "A well designed quote element with image of author",
-    "icon": "editor:format-quote",
-    "color": "blue",
-    "tags": [
-      "Layout",
-      "quote",
-      "blockquote",
-      "content",
-      "design",
-      "presentation"
-    ],
-    "meta": {
-      "author": "HAXTheWeb core team"
-    }
+  "title": "Block quote",
+  "description": "A well designed quote element with image of author",
+  "icon": "editor:format-quote",
+  "color": "blue",
+  "tags": [
+    "Layout",
+    "quote",
+    "blockquote",
+    "content",
+    "design",
+    "presentation"
+  ],
+  "meta": {
+    "author": "HAXTheWeb core team"
   }
+}
 ```
 
 # Settings
@@ -80,58 +78,57 @@ Settings provide the editing form fields the user sees. This is a simplified ver
 
 Settings has 3 possible properties which have array of fields to generate. `configure`, `advanced` and `developer` correspond to the collapsed area in the editing form.
 ```json
-  "settings": {
-    "configure": [
-      {
-        "property": "citation",
-        "title": "Citation",
-        "description": "The citation of the element",
-        "inputMethod": "textfield"
-      },
-      {
-        "property": "alt",
-        "title": "Alt",
-        "description": "The alt text for the image",
-        "inputMethod": "textfield"
-      },
-      {
-        "property": "image",
-        "title": "Image",
-        "description": "The image of the element",
-        "inputMethod": "haxupload",
-        "noVoiceRecord": true,
-        "validationType": "url"
-      }
-    ],
-    "advanced": []
-  }
+"settings": {
+  "configure": [
+    {
+      "property": "citation",
+      "title": "Citation",
+      "description": "The citation of the element",
+      "inputMethod": "textfield"
+    },
+    {
+      "property": "alt",
+      "title": "Alt",
+      "description": "The alt text for the image",
+      "inputMethod": "textfield"
+    },
+    {
+      "property": "image",
+      "title": "Image",
+      "description": "The image of the element",
+      "inputMethod": "haxupload",
+      "noVoiceRecord": true,
+      "validationType": "url"
+    }
+  ],
+  "advanced": [],
+  "developer": [],
+}
 ```
 
 # Save options
 Save options ensure that some built in clean up happens when the element is converted to an HTML String. There are [additional hooks for more advanced clean up](https://github.com/haxtheweb/webcomponents/blob/master/elements/hax-body-behaviors/lib/HAXWiring.js) but `wipeSlot` will remove any lightDom content the element might have. `unsetAttributes` is an `Array` of strings which will be removed prior to saving content to an HTML String.
 
 ```json
-  "saveOptions": {
-      "wipeSlot": false,
-      "unsetAttributes": []
-  }
+"saveOptions": {
+  "wipeSlot": false,
+  "unsetAttributes": []
+}
 ```
 
 # Demo
 The `demoSchema` property is an array of HaxElementSchema. HAXElementSchema is a very simple VDOM which defines the tag, the properties (or attribute) values, and the lightdom `content`
 
 ```json
-{
-  "demoSchema": [
-    {
-      "tag": "block-quote",
-      "properties": {
-        "citation": "Padmé Amidala: Star wars, Episode II"
-      },
-      "content": "<p>So this is how liberty dies... with thunderous applause</p>"
-    }
-  ]
-}
+"demoSchema": [
+  {
+    "tag": "block-quote",
+    "properties": {
+      "citation": "Padmé Amidala: Star wars, Episode II"
+    },
+    "content": "<p>So this is how liberty dies... with thunderous applause</p>"
+  }
+]
 ```
 
 The above when asked to be presented for demonstration purposes (which is also the default when you select a block to add it to the page in the h-a-x editor) will be the following:

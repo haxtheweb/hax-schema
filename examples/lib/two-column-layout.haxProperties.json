@@ -1,0 +1,52 @@
+{
+  "api": "1",
+  "type": "grid",
+  "canScale": false,
+  "canEditSource": true,
+  "hideDefaultSettings": true,
+  "gizmo": {
+    "title": "Two column layout",
+    "description": "Places blocks side by side in two columns that stack on small screens.",
+    "icon": "hax:6/6",
+    "color": "grey",
+    "tags": ["Layout", "columns", "grid"],
+    "meta": { "author": "HAXTheWeb core team" }
+  },
+  "settings": {
+    "configure": [
+      {
+        "property": "ratio",
+        "title": "Column ratio",
+        "inputMethod": "radio",
+        "options": {
+          "1-1": "Equal",
+          "2-1": "Wide left",
+          "1-2": "Wide right"
+        }
+      },
+      {
+        "slot": "col-1",
+        "title": "Left column",
+        "description": "Blocks in the left column",
+        "inputMethod": "code-editor"
+      },
+      {
+        "slot": "col-2",
+        "title": "Right column",
+        "description": "Blocks in the right column",
+        "inputMethod": "code-editor"
+      }
+    ],
+    "advanced": []
+  },
+  "saveOptions": {
+    "unsetAttributes": ["active-column"]
+  },
+  "demoSchema": [
+    {
+      "tag": "two-column-layout",
+      "properties": { "ratio": "1-1" },
+      "content": "<p slot=\"col-1\">Left column content</p><p slot=\"col-2\">Right column content</p>"
+    }
+  ]
+}

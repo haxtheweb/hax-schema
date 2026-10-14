@@ -1,0 +1,116 @@
+{
+  "api": "1",
+  "type": "element",
+  "canScale": true,
+  "canEditSource": true,
+  "contentEditable": false,
+  "hideDefaultSettings": false,
+  "designSystem": {
+    "primary": true,
+    "accent": true,
+    "card": true,
+    "text": false,
+    "designTreatment": false
+  },
+  "gizmo": {
+    "title": "Feature card",
+    "description": "A card that highlights one feature with an image, a heading and a call to action.",
+    "icon": "icons:view-agenda",
+    "color": "blue",
+    "tags": ["Content", "card", "feature", "presentation"],
+    "handles": [
+      { "type": "image", "source": "image", "alt": "alt", "title": "heading" }
+    ],
+    "meta": { "author": "HAXTheWeb core team" },
+    "shortcut": [
+      { "type": "markdown", "trigger": ">fc", "description": "Insert a feature card (type >fc then space)" }
+    ]
+  },
+  "settings": {
+    "configure": [
+      {
+        "property": "heading",
+        "title": "Heading",
+        "description": "Short title of the feature",
+        "inputMethod": "textfield",
+        "required": true
+      },
+      {
+        "property": "image",
+        "title": "Image",
+        "description": "Image that illustrates the feature",
+        "inputMethod": "haxupload",
+        "validationType": "url",
+        "noVoiceRecord": true
+      },
+      {
+        "property": "alt",
+        "title": "Alternative text",
+        "description": "Describe the image for people who cannot see it",
+        "inputMethod": "alt"
+      },
+      {
+        "property": "layout",
+        "title": "Layout",
+        "description": "Where the image sits relative to the text",
+        "inputMethod": "select",
+        "options": {
+          "left": "Image left",
+          "right": "Image right",
+          "top": "Image on top"
+        }
+      },
+      {
+        "slot": "",
+        "title": "Body",
+        "description": "Text describing the feature",
+        "inputMethod": "textarea",
+        "slotWrapper": "p"
+      }
+    ],
+    "advanced": [
+      {
+        "property": "links",
+        "title": "Call to action links",
+        "description": "Buttons shown under the body",
+        "inputMethod": "array",
+        "itemLabel": "label",
+        "properties": [
+          { "property": "label", "title": "Label", "inputMethod": "textfield" },
+          { "property": "url", "title": "URL", "inputMethod": "url" },
+          { "property": "external", "title": "Opens in a new tab", "inputMethod": "boolean" }
+        ]
+      },
+      {
+        "attribute": "data-elevation",
+        "title": "Elevation",
+        "description": "Shadow depth",
+        "inputMethod": "slider",
+        "min": 0,
+        "max": 5,
+        "step": 1
+      }
+    ],
+    "developer": []
+  },
+  "saveOptions": {
+    "wipeSlot": false,
+    "unsetAttributes": ["image-loaded", "active-link"]
+  },
+  "documentation": {
+    "howTo": "https://haxtheweb.org/welcome",
+    "purpose": "https://haxtheweb.org/welcome"
+  },
+  "demoSchema": [
+    {
+      "tag": "feature-card",
+      "properties": {
+        "heading": "Works offline",
+        "image": "https://haxtheweb.org/files/hax (1).png",
+        "alt": "The HAX logo",
+        "layout": "left"
+      },
+      "content": "<p>Sites keep working without a network connection.</p>"
+    }
+  ]
+}

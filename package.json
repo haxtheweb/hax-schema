@@ -1,9 +1,30 @@
 {
   "name": "@haxtheweb/hax-schema",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
   "description": "JSON Schema definitions and a validator for HAX haxProperties files",
+  "keywords": [
+    "hax",
+    "haxtheweb",
+    "haxProperties",
+    "json-schema",
+    "web-components",
+    "validator"
+  ],
+  "homepage": "https://github.com/haxtheweb/hax-schema#readme",
+  "bugs": {
+    "url": "https://github.com/haxtheweb/issues/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haxtheweb/hax-schema.git"
+  },
   "license": "Apache-2.0",
+  "main": "scripts/validate.js",
+  "exports": {
+    ".": "./scripts/validate.js",
+    "./schema/*": "./schema/*",
+    "./package.json": "./package.json"
+  },
   "bin": {
     "haxproperties-validate": "scripts/validate.js"
   },
@@ -13,11 +34,17 @@
     "example.json",
     "examples/"
   ],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "validate": "node scripts/validate.js",
     "test": "node scripts/test.js"
   },
   "dependencies": {
     "ajv": "^8.17.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

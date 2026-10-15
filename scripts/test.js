@@ -30,16 +30,16 @@ check('examples/lib/feature-card.haxProperties.json', true)
 check('examples/lib/two-column-layout.haxProperties.json', true)
 check('examples/locales/feature-card.es.haxProperties.json', true)
 check('examples/invalid/lib/common-mistakes.haxProperties.json', false, [
-  '"desc"',
+  '"desc"; prefix custom keys with "x-"',
   'textfield, textarea',
   'needs "options" or "itemsList"',
   '/settings/configure/2: field must target',
-  '/settings: must NOT have additional properties ("saveOptions")',
+  '/settings: must NOT have additional properties ("saveOptions"',
   '/saveOptions/unsetAttributes/0: unsetAttributes entries are dash-case',
   'need at least one demoSchema entry'
 ])
 check('examples/invalid/locales/common-mistakes.fr.haxProperties.json', false, [
   '("developer")',
-  '4 entries but the base file has 3'
+  'entry 3 has no field at that index'
 ])
 process.exitCode = failures ? 1 : 0

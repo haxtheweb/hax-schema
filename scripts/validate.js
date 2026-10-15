@@ -113,16 +113,33 @@ function localeChecks (doc, base) {
     const tr = (doc.settings || {})[group]
     if (!tr) continue
     const orig = (base.settings || {})[group] || []
-    if (tr.length > orig.length) {
-      errors.push({ path: `/settings/${group}`, message: `${tr.length} entries but the base file has ${orig.length}; overlays merge by index` })
-    }
+    let unnamed = 0
     tr.forEach((t, i) => {
-      const o = orig[i]
-      if (o && t && t.options && !o.options) warnings.push({ path: `/settings/${group}/${i}/options`, message: 'base field has no options to translate' })
-      if (o && t && t.options && o.options) {
+      if (!t || typeof t !== 'object') return
+      const id = ['property', 'attribute', 'slot'].find((k) => typeof t[k] === 'string')
+      let o
+      if (id) {
+        o = orig.find((f) => f && f[id] === t[id])
+        if (!o) {
+          errors.push({ path: `/settings/${group}/${i}/${id}`, message: `translates ${id} "${t[id]}" but the base ${group} group has no such field` })
+          return
+        }
+      } else {
+        unnamed++
+        o = orig[i]
+        if (!o) {
+          errors.push({ path: `/settings/${group}/${i}`, message: `entry ${i} has no field at that index in the base file (${orig.length} fields); unnamed entries merge by index` })
+          return
+        }
+      }
+      if (t.options && !o.options) warnings.push({ path: `/settings/${group}/${i}/options`, message: 'base field has no options to translate' })
+      if (t.options && o.options) {
         for (const k of Object.keys(t.options)) if (!(k in o.options)) warnings.push({ path: `/settings/${group}/${i}/options/${k}`, message: `option value "${k}" does not exist in the base field` })
       }
     })
+    if (unnamed) {
+      warnings.push({ path: `/settings/${group}`, message: `${unnamed} entr${unnamed === 1 ? 'y relies' : 'ies rely'} on array position; add "property", "attribute" or "slot" so reordering the base file cannot mislabel translations` })
+    }
   }
   if (Array.isArray(doc.demoSchema)) {
     const orig = base.demoSchema || []
@@ -138,7 +155,8 @@ function localeChecks (doc, base) {
   return { errors, warnings }
 }
 
-function formatAjv (errors) {
+function formatAjv (errors, type = 'element') {
+  const hint = type === 'element' ? '; prefix custom keys with "x-"' : ''
   const list = errors || []
   // a field with none of property/attribute/slot produces 4 errors; report one
   const anyOfPaths = new Set(list.filter((e) => e.keyword === 'anyOf').map((e) => e.instancePath))
@@ -151,8 +169,8 @@ function formatAjv (errors) {
       } else if (e.keyword === 'pattern' && /\/unsetAttributes\//.test(e.instancePath)) {
         msg = 'unsetAttributes entries are dash-case attribute names (for example "element-visible", not "elementVisible"); camelCase entries never match and are ignored'
       }
-      if (e.params && e.params.additionalProperty) msg += ` ("${e.params.additionalProperty}")`
-      if (e.params && e.params.unevaluatedProperty) msg += ` ("${e.params.unevaluatedProperty}")`
+      if (e.params && e.params.additionalProperty) msg += ` ("${e.params.additionalProperty}"${hint})`
+      if (e.params && e.params.unevaluatedProperty) msg += ` ("${e.params.unevaluatedProperty}"${hint})`
       if (e.params && e.params.allowedValues) msg += `: ${e.params.allowedValues.join(', ')}`
       return { path: e.instancePath || '/', message: msg }
     })
@@ -168,7 +186,7 @@ function validateFile (file, validators, baseOverride) {
   }
   const v = validators[type]
   v(doc)
-  let errors = formatAjv(v.errors)
+  let errors = formatAjv(v.errors, type)
   let warnings = []
   if (type === 'element') {
     const r = elementChecks(doc)

@@ -2,23 +2,36 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/haxtheweb/hax-schema/main/schema/haxProperties.locale.schema.json",
   "title": "HAX properties locale overlay",
-  "description": "Translation overlay stored as `locales/<tag>.<lang>.haxProperties.json` next to an element. HaxStore.attemptGizmoTranslation merges it over the base haxProperties: `gizmo` keys are replaced; `settings.configure` / `settings.advanced` and `demoSchema` are merged BY ARRAY INDEX, so entries must stay in the same order as the base file (use `{}` to skip an entry). `settings.developer` is not translated.",
+  "description": "Translation overlay stored as `locales/<tag>.<lang>.haxProperties.json` next to an element. HaxStore.attemptGizmoTranslation merges it over the base haxProperties: `gizmo` keys are replaced; each `settings.configure` / `settings.advanced` entry that names its field with `property`, `attribute` or `slot` is applied to that field, and entries without one are applied to the field at the same array index. Naming the field is recommended: reordering the base file then cannot mislabel translations. `demoSchema` entries merge by index. `settings.developer` is not translated.",
   "type": "object",
   "properties": {
     "gizmo": {
       "type": "object",
       "properties": {
-        "title": { "type": "string" },
-        "description": { "type": "string" },
-        "tags": { "type": "array", "items": { "type": "string" } }
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       },
       "additionalProperties": false
     },
     "settings": {
       "type": "object",
       "properties": {
-        "configure": { "$ref": "#/$defs/translatedFields" },
-        "advanced": { "$ref": "#/$defs/translatedFields" }
+        "configure": {
+          "$ref": "#/$defs/translatedFields"
+        },
+        "advanced": {
+          "$ref": "#/$defs/translatedFields"
+        }
       },
       "additionalProperties": false
     },
@@ -27,7 +40,10 @@
       "items": {
         "type": "object",
         "properties": {
-          "properties": { "description": "Translated user-visible property values, keyed like the base demo.", "type": "object" }
+          "properties": {
+            "description": "Translated user-visible property values, keyed like the base demo.",
+            "type": "object"
+          }
         },
         "additionalProperties": false
       }
@@ -36,14 +52,35 @@
   "additionalProperties": false,
   "$defs": {
     "translatedFields": {
-      "description": "Same length and order as the base group. Only user-visible strings belong here.",
+      "description": "Entries that name their field (`property` / `attribute` / `slot`) can be in any order; entries without one must line up by index with the base group.",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "title": { "type": "string" },
-          "description": { "type": "string" },
-          "options": { "type": "object", "additionalProperties": { "type": "string" } }
+          "property": {
+            "description": "Identifies the base field to translate (not copied).",
+            "type": "string"
+          },
+          "attribute": {
+            "description": "Identifies the base field to translate (not copied).",
+            "type": "string"
+          },
+          "slot": {
+            "description": "Identifies the base field to translate (not copied).",
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "options": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
         },
         "additionalProperties": false
       }

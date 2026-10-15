@@ -1,0 +1,13 @@
+{
+  "settings": {
+    "configure": [
+      { "title": "Titre" },
+      { "title": "Taille" },
+      { "title": "Sans cible" },
+      { "title": "Champ en trop" }
+    ],
+    "developer": [
+      { "title": "Not translated" }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "element",
+  "gizmo": {
+    "title": "Common mistakes",
+    "icon": "icons:warning",
+    "color": "red",
+    "tags": ["Other"]
+  },
+  "settings": {
+    "configure": [
+      { "property": "title", "title": "Title", "desc": "typo: should be description", "inputMethod": "text" },
+      { "property": "size", "title": "Size", "inputMethod": "select" },
+      { "title": "No target", "inputMethod": "textfield" }
+    ],
+    "saveOptions": { "unsetAttributes": ["_haxstate"] }
+  },
+  "saveOptions": {
+    "unsetAttributes": ["elementVisible"]
+  },
+  "demoSchema": []
+}

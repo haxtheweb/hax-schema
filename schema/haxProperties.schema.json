@@ -684,7 +684,7 @@
       }
     },
     "demo": {
-      "description": "HAXElementSchema: a tiny VDOM node.",
+      "description": "HAXElementSchema: a tiny VDOM node. Full conversion rules (false removes attributes, null becomes \"null\", data: URLs are stripped, ...) are documented in haxtheweb/hax-element-schema.",
       "type": "object",
       "required": [
         "tag",
@@ -697,14 +697,24 @@
         },
         "properties": {
           "description": "Property or attribute values (camelCase keys are written as dash-case attributes).",
-          "type": "object"
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "number",
+              "boolean",
+              "array",
+              "object"
+            ],
+            "description": "Avoid null: it is written as the literal attribute value \"null\"."
+          }
         },
         "content": {
           "description": "Light DOM HTML.",
           "type": "string"
         },
         "description": {
-          "description": "Label for this variant when several demos are offered.",
+          "description": "Human label for this variant when an element ships several demos. Informational; HAX core does not read it.",
           "type": "string"
         }
       },

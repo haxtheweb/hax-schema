@@ -283,3 +283,7 @@ See [`examples/locales/feature-card.es.haxProperties.json`](examples/locales/fea
 
 # Beyond haxProperties: haxHooks
 Behavior that needs code (custom insert / save processing, edit-mode toggles, upload transforms) is implemented with `haxHooks()` on the element rather than in this JSON. The list of hooks and their signatures is documented at the top of [HAXWiring.js](https://github.com/haxtheweb/webcomponents/blob/master/elements/hax-body-behaviors/lib/HAXWiring.js).
+
+## Releasing
+
+This package is versioned with the rest of the HAX ecosystem and is published by the ubiquity release (`scripts/ubiquity-push.sh` in haxtheweb/webcomponents), which runs `commit-and-tag-version --release-as <ecosystem version>`, pushes the tag and runs `npm publish`. To cut a release of just this package, run `npm run release` (tests, bumps the version and CHANGELOG, tags, pushes to `main`, publishes).

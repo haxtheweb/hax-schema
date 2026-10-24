@@ -1,0 +1,38 @@
+{
+  "api": "1",
+  "type": "element",
+  "canScale": false,
+  "canEditSource": true,
+  "gizmo": {
+    "title": "Shape picker",
+    "description": "Invalid example: an array of options on a select",
+    "icon": "icons:extension",
+    "color": "grey",
+    "tags": [
+      "Other"
+    ]
+  },
+  "settings": {
+    "configure": [
+      {
+        "property": "shape",
+        "title": "Shape",
+        "inputMethod": "select",
+        "options": [
+          "circle",
+          "square"
+        ]
+      }
+    ],
+    "advanced": []
+  },
+  "demoSchema": [
+    {
+      "tag": "shape-picker",
+      "properties": {
+        "shape": "circle"
+      },
+      "content": ""
+    }
+  ]
+}

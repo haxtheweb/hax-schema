@@ -143,7 +143,7 @@ Settings provide the editing form fields the user sees. This is a simplified ver
   - **colorpicker** - select a color (list)
   - **hax-palette-picker** - pick a DDD palette
   - **haxcms-theme-picker** - pick a HAXcms theme
-  - **iconpicker** - select an icon
+  - **iconpicker** - select an icon; `options` may be an array of icon names to limit the choices
   - **code-editor** - Monaco editor with line-endings and color-coding
   - **code** / **markup** / **html-block** - HTML / code value
   - **md-block** - markdown value
@@ -166,7 +166,7 @@ Common field keys beyond `title` / `description` / `inputMethod`:
 | `property` / `attribute` / `slot` | what the field edits (exactly one; `slot: ""` is the default slot) |
 | `required`, `disabled`, `hidden` | booleans |
 | `validationType`, `validation` | extra validation (`url`, `text`) and a regex string (default `.*`) |
-| `options` / `itemsList` | `select` / `radio` choices: `{ "value": "Label" }` or `[{ "value": "v", "text": "Label" }]` |
+| `options` / `itemsList` | `select` / `radio` choices: `{ "value": "Label" }` or `[{ "value": "v", "text": "Label" }]`; for `iconpicker`, `options` is an array of icon names (`["icons:star", ...]`) |
 | `min`, `max`, `step`, `suffix` | `number` / `slider` |
 | `properties`, `itemLabel`, `expanded`, `hideReorder`, `hideDuplicate` | `array` / `object` / grouping fields |
 | `slotWrapper`, `allowedSlotWrappers`, `slotAttributes` | tag (default `span`) and attributes used to wrap slot content |

@@ -345,11 +345,21 @@
           ]
         },
         "options": {
-          "description": "For select / radio: map of stored value -> label.",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
+          "description": "For select / radio: map of stored value -> label. For iconpicker: array of icon names to offer (passed to simple-icon-picker's `icons`).",
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
         },
         "itemsList": {
           "description": "For select / radio: ordered list alternative to `options`.",

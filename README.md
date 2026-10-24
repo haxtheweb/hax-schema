@@ -60,6 +60,7 @@ Initial metadata settings associated with controls built into the interface. Exp
 - **api** - always `"1"` (the only version).
 - **type** - `element` (default) for a normal block, or `grid` for a layout container whose slots accept other blocks.
 - **canScale** - show the width scaler (default `true`). Use an object `{ "min": 30, "max": 100, "step": 10 }` for a custom range, `false` to hide it.
+- **canPosition** - legacy: can the element be positioned left or center justified. HAX is moving away from it, but it is still valid because existing elements use it.
 - **canEditSource** - should users see the inline `view source` button (default `false`)
 - **contentEditable** - the element's light DOM is directly editable as text (default `false`)
 - **editingElement** - who provides the editing UI. `core` (default) means HAX edits the element directly. An object `{ "tag": "editable-table", "import": "@haxtheweb/editable-table/editable-table.js" }` names a custom element that HAX wraps around the active element while it is edited, and that wrapper syncs state through the `activeElementChanged` haxHook. HAX core uses this for `<table>` and `<iframe>`; a JS definition can also pass a `callback(wrapper)`.

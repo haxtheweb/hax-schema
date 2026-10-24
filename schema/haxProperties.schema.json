@@ -82,6 +82,11 @@
       ],
       "default": true
     },
+    "canPosition": {
+      "description": "Legacy: whether the element can be positioned left or center justified. An older setting HAX is moving away from; still present in some elements (for example radar-chart) and in the HAX documentation, so it stays valid.",
+      "type": "boolean",
+      "deprecated": true
+    },
     "canEditSource": {
       "description": "Show the inline `view source` button.",
       "type": "boolean",

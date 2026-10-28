@@ -66,6 +66,13 @@
         "inputMethod": "alt"
       },
       {
+        "property": "icon",
+        "title": "Icon",
+        "description": "Icon shown next to the heading",
+        "inputMethod": "iconpicker",
+        "options": ["icons:star", "icons:favorite", "icons:check-circle"]
+      },
+      {
         "property": "layout",
         "title": "Layout",
         "description": "Where the image sits relative to the text",

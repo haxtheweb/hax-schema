@@ -38,6 +38,9 @@ check('examples/invalid/lib/common-mistakes.haxProperties.json', false, [
   '/saveOptions/unsetAttributes/0: unsetAttributes entries are dash-case',
   'need at least one demoSchema entry'
 ])
+check('examples/invalid/lib/array-options-on-select.haxProperties.json', false, [
+  'an array of options is only for inputMethod "iconpicker"'
+])
 check('examples/invalid/locales/common-mistakes.fr.haxProperties.json', false, [
   '("developer")',
   'entry 3 has no field at that index'

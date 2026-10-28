@@ -60,6 +60,7 @@ Initial metadata settings associated with controls built into the interface. Exp
 - **api** - always `"1"` (the only version).
 - **type** - `element` (default) for a normal block, or `grid` for a layout container whose slots accept other blocks.
 - **canScale** - show the width scaler (default `true`). Use an object `{ "min": 30, "max": 100, "step": 10 }` for a custom range, `false` to hide it.
+- **canPosition** - legacy: can the element be positioned left or center justified. HAX is moving away from it, but it is still valid because existing elements use it.
 - **canEditSource** - should users see the inline `view source` button (default `false`)
 - **contentEditable** - the element's light DOM is directly editable as text (default `false`)
 - **editingElement** - who provides the editing UI. `core` (default) means HAX edits the element directly. An object `{ "tag": "editable-table", "import": "@haxtheweb/editable-table/editable-table.js" }` names a custom element that HAX wraps around the active element while it is edited, and that wrapper syncs state through the `activeElementChanged` haxHook. HAX core uses this for `<table>` and `<iframe>`; a JS definition can also pass a `callback(wrapper)`.
@@ -143,7 +144,7 @@ Settings provide the editing form fields the user sees. This is a simplified ver
   - **colorpicker** - select a color (list)
   - **hax-palette-picker** - pick a DDD palette
   - **haxcms-theme-picker** - pick a HAXcms theme
-  - **iconpicker** - select an icon
+  - **iconpicker** - select an icon; `options` may be an array of icon names to limit the choices
   - **code-editor** - Monaco editor with line-endings and color-coding
   - **code** / **markup** / **html-block** - HTML / code value
   - **md-block** - markdown value
@@ -166,7 +167,7 @@ Common field keys beyond `title` / `description` / `inputMethod`:
 | `property` / `attribute` / `slot` | what the field edits (exactly one; `slot: ""` is the default slot) |
 | `required`, `disabled`, `hidden` | booleans |
 | `validationType`, `validation` | extra validation (`url`, `text`) and a regex string (default `.*`) |
-| `options` / `itemsList` | `select` / `radio` choices: `{ "value": "Label" }` or `[{ "value": "v", "text": "Label" }]` |
+| `options` / `itemsList` | `select` / `radio` choices: `{ "value": "Label" }` or `[{ "value": "v", "text": "Label" }]`; for `iconpicker`, `options` is an array of icon names (`["icons:star", ...]`) |
 | `min`, `max`, `step`, `suffix` | `number` / `slider` |
 | `properties`, `itemLabel`, `expanded`, `hideReorder`, `hideDuplicate` | `array` / `object` / grouping fields |
 | `slotWrapper`, `allowedSlotWrappers`, `slotAttributes` | tag (default `span`) and attributes used to wrap slot content |

@@ -2,6 +2,7 @@
   "api": "1",
   "type": "grid",
   "canScale": false,
+  "canPosition": true,
   "canEditSource": true,
   "hideDefaultSettings": true,
   "gizmo": {

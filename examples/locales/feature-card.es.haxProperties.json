@@ -1,0 +1,48 @@
+{
+  "gizmo": {
+    "title": "Tarjeta de característica",
+    "description": "Una tarjeta que destaca una característica con imagen, título y llamada a la acción."
+  },
+  "settings": {
+    "configure": [
+      {
+        "slot": "",
+        "title": "Cuerpo",
+        "description": "Texto que describe la característica"
+      },
+      {
+        "property": "layout",
+        "title": "Diseño",
+        "description": "Dónde se ubica la imagen respecto al texto",
+        "options": {
+          "left": "Imagen a la izquierda",
+          "right": "Imagen a la derecha",
+          "top": "Imagen arriba"
+        }
+      },
+      {
+        "property": "alt",
+        "title": "Texto alternativo",
+        "description": "Describe la imagen para quien no puede verla"
+      },
+      {
+        "property": "image",
+        "title": "Imagen",
+        "description": "Imagen que ilustra la característica"
+      },
+      {
+        "property": "heading",
+        "title": "Título",
+        "description": "Título corto de la característica"
+      }
+    ]
+  },
+  "demoSchema": [
+    {
+      "properties": {
+        "heading": "Funciona sin conexión",
+        "alt": "El logotipo de HAX"
+      }
+    }
+  ]
+}

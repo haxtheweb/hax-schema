@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>HAX Schema</title>
+  <link href="https://localhost/hax-schema-docs/" rel="self" />
+  <subtitle>Documentation for hax-schema, the haxProperties contract that defines how web components integrate with the HAX authoring interface.</subtitle>
+  <updated>2026-10-30T17:26:57.000Z</updated>
+  <author>
+      <name></name>
+  </author>
+  <id>https://localhost/hax-schema-docs/</id>
+  
+  <entry>
+    <title>Overview</title>
+    <id>item-c65be451-02b3-4ef7-83db-1c9250b42b98</id>
+    <updated>2026-10-30T17:26:57.000Z</updated>
+    <published>2026-10-30T17:26:57.000Z</published>
+    <summary></summary>
+    <link href="https://localhost/hax-schema-docs/overview"/>
+    
+    <content type="html">
+      <![CDATA[ <p>hax-schema documents the schema HAX uses to interface with a web component implementing it. A component's <code>haxProperties</code> describe how it appears in the gizmo browser, what settings the editor shows for it, and how HAX should treat it during editing.</p>
+<p><code>haxProperties</code> is typically defined in a standalone JSON file, referenced from the element via a static getter:</p>
+<code-sample type="javascript" copy-clipboard-button="copy-clipboard-button"><template>static get haxProperties() {
+  return new URL('./lib/block-quote.haxProperties.json', import.meta.url).href;
+}</template></code-sample>
+<p>See <a href="https://github.com/haxtheweb/hax-schema/blob/main/example.json">example.json</a> for a complete example derived from the <a href="https://github.com/haxtheweb/webcomponents/blob/master/elements/course-design/lib/block-quote.haxProperties.json">block-quote element</a>.</p> ]]>
+    </content>
+  </entry>
+  <entry>
+    <title>Core Metadata &amp; Design System</title>
+    <id>item-1de92f0f-8495-453d-b8f2-58cdebada4ac</id>
+    <updated>2026-10-30T17:28:34.000Z</updated>
+    <published>2026-10-30T17:28:34.000Z</published>
+    <summary></summary>
+    <link href="https://localhost/hax-schema-docs/core-metadata"/>
+    
+    <content type="html">
+      <![CDATA[ <a11y-collapse heading-button="heading-button">
+<h2 slot="heading">Core metadata settings</h2>
+<div slot="content">
+<p>Initial metadata settings associated with controls built into the interface:</p>
+<ul>
+<li><strong>type</strong> — is this a block level element OR a grid level element implying it can have things placed inside of it</li>
+<li><strong>canScale</strong> — hide the width scaler which is common</li>
+<li><strong>canEditSource</strong> — should users see the inline <code>view source</code> button</li>
+<li><strong>hideDefaultSettings</strong> — hides the designSystem and textual alignment options commonly present</li>
+<li><strong>designSystem</strong> — can define if accent, primary, card, text (font), and special design treatment form inputs should be shown</li>
+</ul>
+<code-sample type="json" copy-clipboard-button="copy-clipboard-button"><template>"api": "1",
+"type": "element",
+"canScale": false,
+"canEditSource": true,
+"hideDefaultSettings": true,
+"designSystem": {
+  "accent": true,
+  "primary": false,
+  "card": true,
+  "text": false,
+  "designTreatment": false
+}</template></code-sample>
+</div>
+</a11y-collapse>
+<a11y-collapse heading-button="heading-button">
+<h2 slot="heading">Gizmo</h2>
+<div slot="content">
+<p>Gizmo provides the listing in the HAX editor — metadata and filtering that allows the button to render for users to click or drag onto the interface. This data also shows up in Merlin when typing to find related blocks.</p>
+<code-sample type="json" copy-clipboard-button="copy-clipboard-button"><template>"gizmo": {
+  "title": "Block quote",
+  "description": "A well designed quote element with image of author",
+  "icon": "editor:format-quote",
+  "color": "blue",
+  "tags": [
+    "Layout",
+    "quote",
+    "blockquote",
+    "content",
+    "design",
+    "presentation"
+  ],
+  "meta": {
+    "author": "HAXTheWeb core team"
+  }
+}</template></code-sample>
+</div>
+</a11y-collapse> ]]>
+    </content>
+  </entry>
+  <entry>
+    <title>Settings &amp; Input Methods</title>
+    <id>item-3669e79e-7d07-468f-b4ee-0bfa2b7f4d1c</id>
+    <updated>2026-10-30T17:28:35.000Z</updated>
+    <published>2026-10-30T17:28:35.000Z</published>
+    <summary></summary>
+    <link href="https://localhost/hax-schema-docs/settings"/>
+    
+    <content type="html">
+      <![CDATA[ <p>Settings provide the editing form fields the user sees. This is a simplified version of JSON Schema and supports <code>property</code>, <code>attribute</code>, or <code>slot</code> as far as what it is mapped to. <code>title</code> and <code>description</code> are shown to the user on the form while <code>inputMethod</code> determines the control rendered.</p>
+<a11y-collapse heading-button="heading-button">
+<h2 slot="heading">Organization input methods</h2>
+<div slot="content">
+<ul>
+<li><strong>tabs</strong> — visual wrapper which groups sub-fields into defined tabs, hiding non-active tabs</li>
+<li><strong>fieldset</strong> — visual wrapper which groups sub-fields within a border</li>
+<li><strong>array</strong> — visual wrapper which groups sub-fields as an array of objects (users can dynamically expand this array with an "add item" button)</li>
+<li><strong>collapse</strong> — visual wrapper which groups sub-fields under a collapsible tag</li>
+</ul>
+</div>
+</a11y-collapse>
+<a11y-collapse heading-button="heading-button">
+<h2 slot="heading">Control input methods</h2>
+<div slot="content">
+<ul>
+<li><strong>textfield</strong> — text input</li>
+<li><strong>textarea</strong> — resizeable multi-line text input</li>
+<li><strong>alt</strong> — alt data validation</li>
+<li><strong>url</strong> — url data validation</li>
+<li><strong>select</strong> — select list</li>
+<li><strong>boolean</strong> — checkbox</li>
+<li><strong>number</strong> — number selector / validation</li>
+<li><strong>slider</strong> — min, max, step for numerical input</li>
+<li><strong>radio</strong> — single item select</li>
+<li><strong>color</strong> — select a color (hex)</li>
+<li><strong>colorpicker</strong> — select a color (list)</li>
+<li><strong>iconpicker</strong> — select an icon</li>
+<li><strong>code-editor</strong> — Monaco editor with line-endings and color-coding</li>
+<li><strong>fileupload</strong> — file upload (not hax specific)</li>
+<li><strong>haxupload</strong> — file upload field wired to talk to the HAX editor appStore</li>
+<li><strong>date-time</strong> — select YYYY-MM-DDThh:mmZ string</li>
+<li><strong>datepicker</strong> — select YYYY-MM-DD string</li>
+<li><strong>monthpicker</strong> — select YYYY-MM string</li>
+<li><strong>weekpicker</strong> — select YYYY-Www string</li>
+<li><strong>timepicker</strong> — select hh:mmZ timestamp</li>
+</ul>
+<p>Review the source at <a href="https://github.com/haxtheweb/webcomponents/blob/master/elements/hax-body-behaviors/lib/HAXFields.js">HAXFields.js</a> for the latest additions.</p>
+</div>
+</a11y-collapse>
+<p>Settings has 3 possible properties which hold an array of fields to generate. <code>configure</code>, <code>advanced</code>, and <code>developer</code> correspond to the collapsed areas in the editing form.</p>
+<code-sample type="json" copy-clipboard-button="copy-clipboard-button"><template>"settings": {
+  "configure": [
+    {
+      "property": "citation",
+      "title": "Citation",
+      "description": "The citation of the element",
+      "inputMethod": "textfield"
+    },
+    {
+      "property": "alt",
+      "title": "Alt",
+      "description": "The alt text for the image",
+      "inputMethod": "textfield"
+    },
+    {
+      "property": "image",
+      "title": "Image",
+      "description": "The image of the element",
+      "inputMethod": "haxupload",
+      "noVoiceRecord": true,
+      "validationType": "url"
+    }
+  ],
+  "advanced": [],
+  "developer": []
+}</template></code-sample>
+<p><strong>Organization</strong> settings are designed for a more complex use case, purposefully grouping fields together. Child items (sub-fields) are assigned under the <code>properties</code> tag:</p>
+<code-sample type="json" copy-clipboard-button="copy-clipboard-button"><template>"settings": {
+  "configure": [
+    {
+      "property": "skills",
+      "title": "Associated Skills",
+      "description": "The skills related to the element",
+      "inputMethod": "array",
+      "itemLabel": "name",
+      "hideReorder": true,
+      "expanded": true,
+      "hideDuplicate": true,
+      "properties": [
+        {
+          "property": "name",
+          "title": "Skill",
+          "inputMethod": "textfield"
+        }
+      ]
+    }
+  ]
+}</template></code-sample> ]]>
+    </content>
+  </entry>
+  <entry>
+    <title>Hax Hooks</title>
+    <id>item-b7c71ec2-3cc4-4b00-b5a8-545db66ffea9</id>
+    <updated>2026-10-30T17:28:36.000Z</updated>
+    <published>2026-10-30T17:28:36.000Z</published>
+    <summary></summary>
+    <link href="https://localhost/hax-schema-docs/hax-hooks"/>
+    
+    <content type="html">
+      <![CDATA[ <p>While <code>haxProperties</code> describes how an element appears in the gizmo browser and how HAX configures it via settings forms, <code>haxHooks</code> lets an element participate in HAX lifecycle / state changes <strong>without importing HAX</strong>. This keeps elements decoupled from the editor: an element opts into deeper integration by declaring a <code>haxHooks()</code> method that maps hook names to method names on the element.</p>
+<code-sample type="javascript" copy-clipboard-button="copy-clipboard-button"><template>// example from @haxtheweb/media-image/media-image.js
+haxHooks() {
+  return {
+    editModeChanged: "haxeditModeChanged",
+    activeElementChanged: "haxactiveElementChanged",
+    mediaSourceUpdated: "haxmediaSourceUpdated",
+  };
+}</template></code-sample>
+<p>The HAX store discovers these via <code>testHook</code> / <code>runHook</code> and invokes them at the right lifecycle moment. The callback name is your choice; the convention is <code>hax</code> + the hook name.</p>
+<a11y-collapse heading-button="heading-button">
+<h2 slot="heading">Available hooks</h2>
+<div slot="content">
+<ul>
+<li><strong>activeElementChanged</strong> — input <code>(activeElement, value)</code> where value is whether the element is active. See <code>@haxtheweb/retro-card/retro-card.js</code></li>
+<li><strong>editModeChanged</strong> — input <code>(value)</code> where value is the edit-mode state of the body. See <code>@haxtheweb/retro-card/retro-card.js</code></li>
+<li><strong>inlineContextMenu</strong> — allows dynamically adding buttons to the editor context menu. See <code>@haxtheweb/multiple-choice/multiple-choice.js</code></li>
+<li><strong>gizmoRegistration</strong> — lets an element rewrite the store when it is registered with HAX (e.g. register a custom app, extend <code>validGizmoTypes</code>). See <code>@haxtheweb/github-preview/github-preview.js</code></li>
+<li><strong>preProcessNodeToContent</strong> — input <code>(node)</code>, the item about to be converted to content for export. See <code>@haxtheweb/editable-table/editable-table.js</code></li>
+<li><strong>progressiveEnhancement</strong> — works on the element ONLY in the slotted / innerHTML area; must return content. See <code>@haxtheweb/meme-maker/meme-maker.js</code></li>
+<li><strong>postProcessNodeToContent</strong> — input <code>(content)</code>, an HTML blob about to be returned for export. See <code>@haxtheweb/video-player/video-player.js</code></li>
+<li><strong>preProcessInsertContent</strong> — input <code>(node)</code>, the item about to be inserted into the content. See <code>@haxtheweb/multiple-choice/multiple-choice.js</code></li>
+<li><strong>siteToSkeleton</strong> — input <code>(details)</code> where details is <code>{ uuidMap, direction }</code>; element rewrites its own site-item UUID references so skeleton structure and content stay in sync. See <code>@haxtheweb/haxcms-elements/lib/ui-components/magic/site-collection-list.js</code></li>
+<li><strong>mediaSourceUpdated</strong> — input <code>(path, store)</code> where path is the clean URL of a file just modified in place and store is the HAXStore instance. See <code>@haxtheweb/media-image/media-image.js</code></li>
+<li><strong>processFileUpload</strong> — input <code>(values, response, store)</code> invoked from the generic tray upload / drag-drop path after a file is uploaded but before insertion. Return <code>false</code> to decline, or a mapping object to run a post-upload transform. See <code>@haxtheweb/slide-deck/slide-deck.js</code></li>
+</ul>
+<p>The authoritative source for the hook list is the comment block at the top of <a href="https://github.com/haxtheweb/webcomponents/blob/master/elements/hax-body-behaviors/lib/HAXWiring.js">HAXWiring.js</a>.</p>
+</div>
+</a11y-collapse> ]]>
+    </content>
+  </entry>
+  <entry>
+    <title>Save Options &amp; Demo</title>
+    <id>item-b75a445d-a83b-4696-9a97-2a84c010a0be</id>
+    <updated>2026-10-30T17:28:36.000Z</updated>
+    <published>2026-10-30T17:28:36.000Z</published>
+    <summary></summary>
+    <link href="https://localhost/hax-schema-docs/save-options-demo"/>
+    
+    <content type="html">
+      <![CDATA[ <h2>Save options</h2>
+<p>Save options ensure built-in clean up happens when the element is converted to an HTML string. <code>wipeSlot</code> removes any light DOM content the element might have. <code>unsetAttributes</code> is an array of strings which will be removed prior to saving content to an HTML string.</p>
+<code-sample type="json" copy-clipboard-button="copy-clipboard-button"><template>"saveOptions": {
+  "wipeSlot": false,
+  "unsetAttributes": []
+}</template></code-sample>
+<h2>Demo</h2>
+<p>The <code>demoSchema</code> property is an array of HAXElementSchema objects — a simple virtual DOM representation which defines the tag, the properties (or attribute) values, and the light DOM <code>content</code>.</p>
+<code-sample type="json" copy-clipboard-button="copy-clipboard-button"><template>"demoSchema": [
+  {
+    "tag": "block-quote",
+    "properties": {
+      "citation": "Padmé Amidala: Star wars, Episode II"
+    },
+    "content": "&lt;p&gt;So this is how liberty dies... with thunderous applause&lt;/p&gt;"
+  }
+]</template></code-sample>
+<p>The above, when presented for demonstration purposes (the default when a block is added to the page in the HAX editor), renders as:</p>
+<code-sample type="html" copy-clipboard-button="copy-clipboard-button"><template>&lt;block-quote citation="Padmé Amidala: Star wars, Episode II"&gt;
+  &lt;p&gt;So this is how liberty dies... with thunderous applause&lt;/p&gt;
+&lt;/block-quote&gt;</template></code-sample> ]]>
+    </content>
+  </entry>
+  <entry>
+    <title>More Schemas</title>
+    <id>item-59a837de-8496-4283-8d4e-b9b41db6919b</id>
+    <updated>2026-10-30T17:28:37.000Z</updated>
+    <published>2026-10-30T17:28:37.000Z</published>
+    <summary></summary>
+    <link href="https://localhost/hax-schema-docs/more-schemas"/>
+    
+    <content type="html">
+      <![CDATA[ <p>hax-schema is one of several schema specifications in the HAX ecosystem. Explore the others:</p>
+<ul>
+<li><a href="https://haxtheweb.github.io/json-outline-schema/">JSON Outline Schema</a> — the content structure, site navigation, and metadata schema used by HAXcms.</li>
+<li><a href="https://haxtheweb.github.io/hax-element-schema/">HAX Element Schema</a> — the lightweight virtual DOM object format used for demoSchema, insertion, and conversion workflows.</li>
+<li><a href="https://haxtheweb.github.io/merlin-schema/">Merlin Schema</a> — the command-palette and voice-assistant Option/Program schema.</li>
+<li><a href="https://haxtheweb.github.io/appstore-spec/">Appstore Spec</a> — the schema for external media providers, upload targets, stax templates, and autoloaded elements.</li>
+</ul>
+<p>New to HAX? <a href="https://haxtheweb.org/">Get started with HAX</a>.</p> ]]>
+    </content>
+  </entry>
+</feed>

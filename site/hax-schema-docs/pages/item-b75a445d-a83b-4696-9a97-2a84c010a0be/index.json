@@ -1,0 +1,17 @@
+{
+  "id": "item-b75a445d-a83b-4696-9a97-2a84c010a0be",
+  "indent": 0,
+  "location": "pages/item-b75a445d-a83b-4696-9a97-2a84c010a0be/index.json",
+  "slug": "save-options-demo",
+  "order": 4,
+  "parent": null,
+  "title": "Save Options & Demo",
+  "description": "",
+  "metadata": {
+    "created": 1793381316,
+    "updated": 1793381316,
+    "images": [],
+    "videos": []
+  },
+  "content": "<h2>Save options</h2>\n<p>Save options ensure built-in clean up happens when the element is converted to an HTML string. <code>wipeSlot</code> removes any light DOM content the element might have. <code>unsetAttributes</code> is an array of strings which will be removed prior to saving content to an HTML string.</p>\n<code-sample type=\"json\" copy-clipboard-button=\"copy-clipboard-button\"><template>\"saveOptions\": {\n  \"wipeSlot\": false,\n  \"unsetAttributes\": []\n}</template></code-sample>\n<h2>Demo</h2>\n<p>The <code>demoSchema</code> property is an array of HAXElementSchema objects — a simple virtual DOM representation which defines the tag, the properties (or attribute) values, and the light DOM <code>content</code>.</p>\n<code-sample type=\"json\" copy-clipboard-button=\"copy-clipboard-button\"><template>\"demoSchema\": [\n  {\n    \"tag\": \"block-quote\",\n    \"properties\": {\n      \"citation\": \"Padmé Amidala: Star wars, Episode II\"\n    },\n    \"content\": \"&lt;p&gt;So this is how liberty dies... with thunderous applause&lt;/p&gt;\"\n  }\n]</template></code-sample>\n<p>The above, when presented for demonstration purposes (the default when a block is added to the page in the HAX editor), renders as:</p>\n<code-sample type=\"html\" copy-clipboard-button=\"copy-clipboard-button\"><template>&lt;block-quote citation=\"Padmé Amidala: Star wars, Episode II\"&gt;\n  &lt;p&gt;So this is how liberty dies... with thunderous applause&lt;/p&gt;\n&lt;/block-quote&gt;</template></code-sample>"
+}

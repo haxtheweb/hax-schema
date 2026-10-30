@@ -1,0 +1,158 @@
+{
+  "id": "97b0bc00-1801-4018-a2ec-8026d40eb540",
+  "title": "HAX Schema",
+  "author": "",
+  "description": "Documentation for hax-schema, the haxProperties contract that defines how web components integrate with the HAX authoring interface.",
+  "license": "by-sa",
+  "metadata": {
+    "author": {},
+    "site": {
+      "name": "hax-schema-docs",
+      "logo": "assets/banner.jpg",
+      "settings": {
+        "lang": "en-US",
+        "publishPagesOn": true,
+        "canonical": true,
+        "pathauto": true
+      },
+      "created": 1793381217,
+      "updated": 1793381217,
+      "git": {
+        "vendor": "github",
+        "branch": "gh-pages"
+      }
+    },
+    "theme": {
+      "element": "clean-one",
+      "path": "@haxtheweb/clean-one/clean-one.js",
+      "name": "Clean One",
+      "thumbnail": "@haxtheweb/haxcms-elements/lib/theme-screenshots/theme-clean-one-thumb.jpg",
+      "description": "Start with a blank site using the Clean One",
+      "category": [
+        "Course"
+      ],
+      "hidden": false,
+      "priority": -2,
+      "terrible": false,
+      "supportedPalettes": [
+        "4",
+        "5"
+      ],
+      "variables": {
+        "icon": "icons:book",
+        "hexCode": "#1e407c",
+        "cssVariable": "--ddd-primary-1"
+      }
+    },
+    "node": {
+      "fields": {}
+    },
+    "platform": {
+      "audience": "expert",
+      "features": {},
+      "allowedBlocks": []
+    },
+    "build": {
+      "version": "26.8.0",
+      "structure": "course",
+      "type": "own"
+    }
+  },
+  "items": [
+    {
+      "id": "item-c65be451-02b3-4ef7-83db-1c9250b42b98",
+      "indent": 0,
+      "location": "pages/item-c65be451-02b3-4ef7-83db-1c9250b42b98/index.html",
+      "slug": "overview",
+      "order": 0,
+      "parent": null,
+      "title": "Overview",
+      "description": "",
+      "metadata": {
+        "created": 1793381217,
+        "updated": 1793381217,
+        "overridePathauto": true
+      }
+    },
+    {
+      "id": "item-1de92f0f-8495-453d-b8f2-58cdebada4ac",
+      "indent": 0,
+      "location": "pages/item-1de92f0f-8495-453d-b8f2-58cdebada4ac/index.html",
+      "slug": "core-metadata",
+      "order": 1,
+      "parent": null,
+      "title": "Core Metadata & Design System",
+      "description": "",
+      "metadata": {
+        "created": 1793381314,
+        "updated": 1793381314,
+        "images": [],
+        "videos": []
+      }
+    },
+    {
+      "id": "item-3669e79e-7d07-468f-b4ee-0bfa2b7f4d1c",
+      "indent": 0,
+      "location": "pages/item-3669e79e-7d07-468f-b4ee-0bfa2b7f4d1c/index.html",
+      "slug": "settings",
+      "order": 2,
+      "parent": null,
+      "title": "Settings & Input Methods",
+      "description": "",
+      "metadata": {
+        "created": 1793381315,
+        "updated": 1793381315,
+        "images": [],
+        "videos": []
+      }
+    },
+    {
+      "id": "item-b7c71ec2-3cc4-4b00-b5a8-545db66ffea9",
+      "indent": 0,
+      "location": "pages/item-b7c71ec2-3cc4-4b00-b5a8-545db66ffea9/index.html",
+      "slug": "hax-hooks",
+      "order": 3,
+      "parent": null,
+      "title": "Hax Hooks",
+      "description": "",
+      "metadata": {
+        "created": 1793381316,
+        "updated": 1793381316,
+        "images": [],
+        "videos": []
+      }
+    },
+    {
+      "id": "item-b75a445d-a83b-4696-9a97-2a84c010a0be",
+      "indent": 0,
+      "location": "pages/item-b75a445d-a83b-4696-9a97-2a84c010a0be/index.html",
+      "slug": "save-options-demo",
+      "order": 4,
+      "parent": null,
+      "title": "Save Options & Demo",
+      "description": "",
+      "metadata": {
+        "created": 1793381316,
+        "updated": 1793381316,
+        "images": [],
+        "videos": []
+      }
+    },
+    {
+      "id": "item-59a837de-8496-4283-8d4e-b9b41db6919b",
+      "indent": 0,
+      "location": "pages/item-59a837de-8496-4283-8d4e-b9b41db6919b/index.html",
+      "slug": "more-schemas",
+      "order": 5,
+      "parent": null,
+      "title": "More Schemas",
+      "description": "",
+      "metadata": {
+        "created": 1793381317,
+        "updated": 1793381317,
+        "images": [],
+        "videos": []
+      }
+    }
+  ]
+}

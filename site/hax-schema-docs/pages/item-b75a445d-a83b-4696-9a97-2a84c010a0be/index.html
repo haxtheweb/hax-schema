@@ -1,0 +1,21 @@
+<h2>Save options</h2>
+<p>Save options ensure built-in clean up happens when the element is converted to an HTML string. <code>wipeSlot</code> removes any light DOM content the element might have. <code>unsetAttributes</code> is an array of strings which will be removed prior to saving content to an HTML string.</p>
+<code-sample type="json" copy-clipboard-button="copy-clipboard-button"><template>"saveOptions": {
+  "wipeSlot": false,
+  "unsetAttributes": []
+}</template></code-sample>
+<h2>Demo</h2>
+<p>The <code>demoSchema</code> property is an array of HAXElementSchema objects — a simple virtual DOM representation which defines the tag, the properties (or attribute) values, and the light DOM <code>content</code>.</p>
+<code-sample type="json" copy-clipboard-button="copy-clipboard-button"><template>"demoSchema": [
+  {
+    "tag": "block-quote",
+    "properties": {
+      "citation": "Padmé Amidala: Star wars, Episode II"
+    },
+    "content": "&lt;p&gt;So this is how liberty dies... with thunderous applause&lt;/p&gt;"
+  }
+]</template></code-sample>
+<p>The above, when presented for demonstration purposes (the default when a block is added to the page in the HAX editor), renders as:</p>
+<code-sample type="html" copy-clipboard-button="copy-clipboard-button"><template>&lt;block-quote citation="Padmé Amidala: Star wars, Episode II"&gt;
+  &lt;p&gt;So this is how liberty dies... with thunderous applause&lt;/p&gt;
+&lt;/block-quote&gt;</template></code-sample>

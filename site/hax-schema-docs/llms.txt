@@ -1,0 +1,27 @@
+# HAX Schema
+
+> Documentation for hax-schema, the haxProperties contract that defines how web components integrate with the HAX authoring interface.
+
+HAXcms is a file-based CMS: authored pages and metadata are stored as portable files, not locked into a database-only workflow.
+The canonical site structure is `site.json`, represented in JSON Outline Schema (`id`, `parent`, `order`, `slug`, `location`, and `metadata`).
+Use HAX CLI and ecosystem tooling to maintain human-authored content while keeping machine-readable outputs synchronized.
+Managed files (feeds, search indexes, manifests, and this `llms.txt`) are generated artifacts and should be rebuilt by tooling.
+
+## Core resources
+- [site.json](https://localhost/hax-schema-docs/site.json): Canonical site manifest and navigation tree in JSON Outline Schema format.
+- [llms.txt](https://localhost/hax-schema-docs/llms.txt): LLM-oriented guide to this site and its machine-readable resources.
+
+## Pages
+- [Overview](https://localhost/hax-schema-docs/pages/item-c65be451-02b3-4ef7-83db-1c9250b42b98/index.md)
+- [Core Metadata & Design System](https://localhost/hax-schema-docs/pages/item-1de92f0f-8495-453d-b8f2-58cdebada4ac/index.md)
+- [Settings & Input Methods](https://localhost/hax-schema-docs/pages/item-3669e79e-7d07-468f-b4ee-0bfa2b7f4d1c/index.md)
+- [Hax Hooks](https://localhost/hax-schema-docs/pages/item-b7c71ec2-3cc4-4b00-b5a8-545db66ffea9/index.md)
+- [Save Options & Demo](https://localhost/hax-schema-docs/pages/item-b75a445d-a83b-4696-9a97-2a84c010a0be/index.md)
+- [More Schemas](https://localhost/hax-schema-docs/pages/item-59a837de-8496-4283-8d4e-b9b41db6919b/index.md)
+
+## Optional
+- [Search index](https://localhost/hax-schema-docs/lunrSearchIndex.json): Lunr corpus for quick full-text retrieval.
+- [RSS feed](https://localhost/hax-schema-docs/rss.xml): Site updates in RSS format.
+- [Atom feed](https://localhost/hax-schema-docs/atom.xml): Site updates in Atom format.
+- [Sitemap](https://localhost/hax-schema-docs/sitemap.xml): URL-level discovery map for the published site.
+- [Agent skills](https://localhost/hax-schema-docs/.well-known/agent-skills/index.json): Agent Skills discovery index (agentskills.io v0.2.0) listing skills that teach an agent how to read, author, audit, and remix this site.

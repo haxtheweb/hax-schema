@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item>
+<id>item-b7c71ec2-3cc4-4b00-b5a8-545db66ffea9</id>
+<indent>0</indent>
+<location>pages/item-b7c71ec2-3cc4-4b00-b5a8-545db66ffea9/index.xml</location>
+<slug>hax-hooks</slug>
+<order>3</order>
+<parent></parent>
+<title>Hax Hooks</title>
+<description></description>
+<metadata>
+<created>1793381316</created>
+<updated>1793381316</updated>
+<images>
+</images>
+<videos>
+</videos>
+</metadata>
+<content><![CDATA[<p>While <code>haxProperties</code> describes how an element appears in the gizmo browser and how HAX configures it via settings forms, <code>haxHooks</code> lets an element participate in HAX lifecycle / state changes <strong>without importing HAX</strong>. This keeps elements decoupled from the editor: an element opts into deeper integration by declaring a <code>haxHooks()</code> method that maps hook names to method names on the element.</p>
+<code-sample type="javascript" copy-clipboard-button="copy-clipboard-button"><template>// example from @haxtheweb/media-image/media-image.js
+haxHooks() {
+  return {
+    editModeChanged: "haxeditModeChanged",
+    activeElementChanged: "haxactiveElementChanged",
+    mediaSourceUpdated: "haxmediaSourceUpdated",
+  };
+}</template></code-sample>
+<p>The HAX store discovers these via <code>testHook</code> / <code>runHook</code> and invokes them at the right lifecycle moment. The callback name is your choice; the convention is <code>hax</code> + the hook name.</p>
+<a11y-collapse heading-button="heading-button">
+<h2 slot="heading">Available hooks</h2>
+<div slot="content">
+<ul>
+<li><strong>activeElementChanged</strong> — input <code>(activeElement, value)</code> where value is whether the element is active. See <code>@haxtheweb/retro-card/retro-card.js</code></li>
+<li><strong>editModeChanged</strong> — input <code>(value)</code> where value is the edit-mode state of the body. See <code>@haxtheweb/retro-card/retro-card.js</code></li>
+<li><strong>inlineContextMenu</strong> — allows dynamically adding buttons to the editor context menu. See <code>@haxtheweb/multiple-choice/multiple-choice.js</code></li>
+<li><strong>gizmoRegistration</strong> — lets an element rewrite the store when it is registered with HAX (e.g. register a custom app, extend <code>validGizmoTypes</code>). See <code>@haxtheweb/github-preview/github-preview.js</code></li>
+<li><strong>preProcessNodeToContent</strong> — input <code>(node)</code>, the item about to be converted to content for export. See <code>@haxtheweb/editable-table/editable-table.js</code></li>
+<li><strong>progressiveEnhancement</strong> — works on the element ONLY in the slotted / innerHTML area; must return content. See <code>@haxtheweb/meme-maker/meme-maker.js</code></li>
+<li><strong>postProcessNodeToContent</strong> — input <code>(content)</code>, an HTML blob about to be returned for export. See <code>@haxtheweb/video-player/video-player.js</code></li>
+<li><strong>preProcessInsertContent</strong> — input <code>(node)</code>, the item about to be inserted into the content. See <code>@haxtheweb/multiple-choice/multiple-choice.js</code></li>
+<li><strong>siteToSkeleton</strong> — input <code>(details)</code> where details is <code>{ uuidMap, direction }</code>; element rewrites its own site-item UUID references so skeleton structure and content stay in sync. See <code>@haxtheweb/haxcms-elements/lib/ui-components/magic/site-collection-list.js</code></li>
+<li><strong>mediaSourceUpdated</strong> — input <code>(path, store)</code> where path is the clean URL of a file just modified in place and store is the HAXStore instance. See <code>@haxtheweb/media-image/media-image.js</code></li>
+<li><strong>processFileUpload</strong> — input <code>(values, response, store)</code> invoked from the generic tray upload / drag-drop path after a file is uploaded but before insertion. Return <code>false</code> to decline, or a mapping object to run a post-upload transform. See <code>@haxtheweb/slide-deck/slide-deck.js</code></li>
+</ul>
+<p>The authoritative source for the hook list is the comment block at the top of <a href="https://github.com/haxtheweb/webcomponents/blob/master/elements/hax-body-behaviors/lib/HAXWiring.js">HAXWiring.js</a>.</p>
+</div>
+</a11y-collapse>]]></content>
+</item>

@@ -1,0 +1,166 @@
+id: item-3669e79e-7d07-468f-b4ee-0bfa2b7f4d1c
+indent: 0
+location: pages/item-3669e79e-7d07-468f-b4ee-0bfa2b7f4d1c/index.yaml
+slug: settings
+order: 2
+parent: null
+title: Settings & Input Methods
+description: ''
+metadata:
+  created: 1793381315
+  updated: 1793381315
+  images: []
+  videos: []
+content: >-
+  <p>Settings provide the editing form fields the user sees. This is a
+  simplified version of JSON Schema and supports <code>property</code>,
+  <code>attribute</code>, or <code>slot</code> as far as what it is mapped to.
+  <code>title</code> and <code>description</code> are shown to the user on the
+  form while <code>inputMethod</code> determines the control rendered.</p>
+
+  <a11y-collapse heading-button="heading-button">
+
+  <h2 slot="heading">Organization input methods</h2>
+
+  <div slot="content">
+
+  <ul>
+
+  <li><strong>tabs</strong> — visual wrapper which groups sub-fields into
+  defined tabs, hiding non-active tabs</li>
+
+  <li><strong>fieldset</strong> — visual wrapper which groups sub-fields within
+  a border</li>
+
+  <li><strong>array</strong> — visual wrapper which groups sub-fields as an
+  array of objects (users can dynamically expand this array with an "add item"
+  button)</li>
+
+  <li><strong>collapse</strong> — visual wrapper which groups sub-fields under a
+  collapsible tag</li>
+
+  </ul>
+
+  </div>
+
+  </a11y-collapse>
+
+  <a11y-collapse heading-button="heading-button">
+
+  <h2 slot="heading">Control input methods</h2>
+
+  <div slot="content">
+
+  <ul>
+
+  <li><strong>textfield</strong> — text input</li>
+
+  <li><strong>textarea</strong> — resizeable multi-line text input</li>
+
+  <li><strong>alt</strong> — alt data validation</li>
+
+  <li><strong>url</strong> — url data validation</li>
+
+  <li><strong>select</strong> — select list</li>
+
+  <li><strong>boolean</strong> — checkbox</li>
+
+  <li><strong>number</strong> — number selector / validation</li>
+
+  <li><strong>slider</strong> — min, max, step for numerical input</li>
+
+  <li><strong>radio</strong> — single item select</li>
+
+  <li><strong>color</strong> — select a color (hex)</li>
+
+  <li><strong>colorpicker</strong> — select a color (list)</li>
+
+  <li><strong>iconpicker</strong> — select an icon</li>
+
+  <li><strong>code-editor</strong> — Monaco editor with line-endings and
+  color-coding</li>
+
+  <li><strong>fileupload</strong> — file upload (not hax specific)</li>
+
+  <li><strong>haxupload</strong> — file upload field wired to talk to the HAX
+  editor appStore</li>
+
+  <li><strong>date-time</strong> — select YYYY-MM-DDThh:mmZ string</li>
+
+  <li><strong>datepicker</strong> — select YYYY-MM-DD string</li>
+
+  <li><strong>monthpicker</strong> — select YYYY-MM string</li>
+
+  <li><strong>weekpicker</strong> — select YYYY-Www string</li>
+
+  <li><strong>timepicker</strong> — select hh:mmZ timestamp</li>
+
+  </ul>
+
+  <p>Review the source at <a
+  href="https://github.com/haxtheweb/webcomponents/blob/master/elements/hax-body-behaviors/lib/HAXFields.js">HAXFields.js</a>
+  for the latest additions.</p>
+
+  </div>
+
+  </a11y-collapse>
+
+  <p>Settings has 3 possible properties which hold an array of fields to
+  generate. <code>configure</code>, <code>advanced</code>, and
+  <code>developer</code> correspond to the collapsed areas in the editing
+  form.</p>
+
+  <code-sample type="json"
+  copy-clipboard-button="copy-clipboard-button"><template>"settings": {
+    "configure": [
+      {
+        "property": "citation",
+        "title": "Citation",
+        "description": "The citation of the element",
+        "inputMethod": "textfield"
+      },
+      {
+        "property": "alt",
+        "title": "Alt",
+        "description": "The alt text for the image",
+        "inputMethod": "textfield"
+      },
+      {
+        "property": "image",
+        "title": "Image",
+        "description": "The image of the element",
+        "inputMethod": "haxupload",
+        "noVoiceRecord": true,
+        "validationType": "url"
+      }
+    ],
+    "advanced": [],
+    "developer": []
+  }</template></code-sample>
+
+  <p><strong>Organization</strong> settings are designed for a more complex use
+  case, purposefully grouping fields together. Child items (sub-fields) are
+  assigned under the <code>properties</code> tag:</p>
+
+  <code-sample type="json"
+  copy-clipboard-button="copy-clipboard-button"><template>"settings": {
+    "configure": [
+      {
+        "property": "skills",
+        "title": "Associated Skills",
+        "description": "The skills related to the element",
+        "inputMethod": "array",
+        "itemLabel": "name",
+        "hideReorder": true,
+        "expanded": true,
+        "hideDuplicate": true,
+        "properties": [
+          {
+            "property": "name",
+            "title": "Skill",
+            "inputMethod": "textfield"
+          }
+        ]
+      }
+    ]
+  }</template></code-sample>

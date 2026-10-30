@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>HAX Schema</title>
+    <link>https://localhost/hax-schema-docs/</link>
+    <description>Documentation for hax-schema, the haxProperties contract that defines how web components integrate with the HAX authoring interface.</description>
+    <copyright>Copyright (C) 2026 https://localhost/hax-schema-docs</copyright>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 30 Oct 2026 17:26:57 GMT</lastBuildDate>
+    <generator>HAXcms NodeJS</generator>
+    <atom:link href="https://localhost/hax-schema-docs/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Overview</title>
+      <link>https://localhost/hax-schema-docs/overview</link>
+      <description>hax-schema documents the schema HAX uses to interface with a web component implementing it. A component&apos;s haxProperties describe how it appears in the gizmo browser, what settings the editor shows for it, and how HAX should treat it during editing. haxProperties is typically defined in a standalone JSON file, referenced from the element via a static getter: static get haxProperties() { return new URL(&apos;./lib/block-quote.haxProperties.json&apos;, import.meta.url).href; } See example.json for a compl...</description>
+      <guid>https://localhost/hax-schema-docs/overview</guid>
+      <pubDate>Fri, 30 Oct 2026 17:26:57 GMT</pubDate>
+    </item>
+    <item>
+      <title>Core Metadata &amp; Design System</title>
+      <link>https://localhost/hax-schema-docs/core-metadata</link>
+      <description>Core metadata settings Initial metadata settings associated with controls built into the interface: type — is this a block level element OR a grid level element implying it can have things placed inside of it canScale — hide the width scaler which is common canEditSource — should users see the inline view source button hideDefaultSettings — hides the designSystem and textual alignment options commonly present designSystem — can define if accent, primary, card, text (font), and special design ...</description>
+      <guid>https://localhost/hax-schema-docs/core-metadata</guid>
+      <pubDate>Fri, 30 Oct 2026 17:28:34 GMT</pubDate>
+    </item>
+    <item>
+      <title>Settings &amp; Input Methods</title>
+      <link>https://localhost/hax-schema-docs/settings</link>
+      <description>Settings provide the editing form fields the user sees. This is a simplified version of JSON Schema and supports property , attribute , or slot as far as what it is mapped to. title and description are shown to the user on the form while inputMethod determines the control rendered. Organization input methods tabs — visual wrapper which groups sub-fields into defined tabs, hiding non-active tabs fieldset — visual wrapper which groups sub-fields within a border array — visual wrapper which grou...</description>
+      <guid>https://localhost/hax-schema-docs/settings</guid>
+      <pubDate>Fri, 30 Oct 2026 17:28:35 GMT</pubDate>
+    </item>
+    <item>
+      <title>Hax Hooks</title>
+      <link>https://localhost/hax-schema-docs/hax-hooks</link>
+      <description>While haxProperties describes how an element appears in the gizmo browser and how HAX configures it via settings forms, haxHooks lets an element participate in HAX lifecycle / state changes without importing HAX . This keeps elements decoupled from the editor: an element opts into deeper integration by declaring a haxHooks() method that maps hook names to method names on the element. // example from @haxtheweb/media-image/media-image.js haxHooks() { return { editModeChanged: &quot;haxeditModeChang...</description>
+      <guid>https://localhost/hax-schema-docs/hax-hooks</guid>
+      <pubDate>Fri, 30 Oct 2026 17:28:36 GMT</pubDate>
+    </item>
+    <item>
+      <title>Save Options &amp; Demo</title>
+      <link>https://localhost/hax-schema-docs/save-options-demo</link>
+      <description>Save options Save options ensure built-in clean up happens when the element is converted to an HTML string. wipeSlot removes any light DOM content the element might have. unsetAttributes is an array of strings which will be removed prior to saving content to an HTML string. &quot;saveOptions&quot;: { &quot;wipeSlot&quot;: false, &quot;unsetAttributes&quot;: [] } Demo The demoSchema property is an array of HAXElementSchema objects — a simple virtual DOM representation which defines the tag, the properties (or attribute) va...</description>
+      <guid>https://localhost/hax-schema-docs/save-options-demo</guid>
+      <pubDate>Fri, 30 Oct 2026 17:28:36 GMT</pubDate>
+    </item>
+    <item>
+      <title>More Schemas</title>
+      <link>https://localhost/hax-schema-docs/more-schemas</link>
+      <description>hax-schema is one of several schema specifications in the HAX ecosystem. Explore the others: JSON Outline Schema — the content structure, site navigation, and metadata schema used by HAXcms. HAX Element Schema — the lightweight virtual DOM object format used for demoSchema, insertion, and conversion workflows. Merlin Schema — the command-palette and voice-assistant Option/Program schema. Appstore Spec — the schema for external media providers, upload targets, stax templates, and autoloaded el...</description>
+      <guid>https://localhost/hax-schema-docs/more-schemas</guid>
+      <pubDate>Fri, 30 Oct 2026 17:28:37 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

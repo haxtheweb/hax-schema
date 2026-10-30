@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item>
+<id>item-c65be451-02b3-4ef7-83db-1c9250b42b98</id>
+<indent>0</indent>
+<location>pages/item-c65be451-02b3-4ef7-83db-1c9250b42b98/index.xml</location>
+<slug>overview</slug>
+<order>0</order>
+<parent></parent>
+<title>Overview</title>
+<description></description>
+<metadata>
+<created>1793381217</created>
+<updated>1793381217</updated>
+<overridePathauto>true</overridePathauto>
+</metadata>
+<content><![CDATA[<p>hax-schema documents the schema HAX uses to interface with a web component implementing it. A component's <code>haxProperties</code> describe how it appears in the gizmo browser, what settings the editor shows for it, and how HAX should treat it during editing.</p>
+<p><code>haxProperties</code> is typically defined in a standalone JSON file, referenced from the element via a static getter:</p>
+<code-sample type="javascript" copy-clipboard-button="copy-clipboard-button"><template>static get haxProperties() {
+  return new URL('./lib/block-quote.haxProperties.json', import.meta.url).href;
+}</template></code-sample>
+<p>See <a href="https://github.com/haxtheweb/hax-schema/blob/main/example.json">example.json</a> for a complete example derived from the <a href="https://github.com/haxtheweb/webcomponents/blob/master/elements/course-design/lib/block-quote.haxProperties.json">block-quote element</a>.</p>]]></content>
+</item>

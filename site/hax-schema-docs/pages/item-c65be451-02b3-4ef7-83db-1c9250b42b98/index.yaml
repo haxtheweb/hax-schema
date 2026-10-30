@@ -1,0 +1,32 @@
+id: item-c65be451-02b3-4ef7-83db-1c9250b42b98
+indent: 0
+location: pages/item-c65be451-02b3-4ef7-83db-1c9250b42b98/index.yaml
+slug: overview
+order: 0
+parent: null
+title: Overview
+description: ''
+metadata:
+  created: 1793381217
+  updated: 1793381217
+  overridePathauto: true
+content: >-
+  <p>hax-schema documents the schema HAX uses to interface with a web component
+  implementing it. A component's <code>haxProperties</code> describe how it
+  appears in the gizmo browser, what settings the editor shows for it, and how
+  HAX should treat it during editing.</p>
+
+  <p><code>haxProperties</code> is typically defined in a standalone JSON file,
+  referenced from the element via a static getter:</p>
+
+  <code-sample type="javascript"
+  copy-clipboard-button="copy-clipboard-button"><template>static get
+  haxProperties() {
+    return new URL('./lib/block-quote.haxProperties.json', import.meta.url).href;
+  }</template></code-sample>
+
+  <p>See <a
+  href="https://github.com/haxtheweb/hax-schema/blob/main/example.json">example.json</a>
+  for a complete example derived from the <a
+  href="https://github.com/haxtheweb/webcomponents/blob/master/elements/course-design/lib/block-quote.haxProperties.json">block-quote
+  element</a>.</p>

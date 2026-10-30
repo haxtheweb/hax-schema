@@ -1,0 +1,17 @@
+{
+  "id": "item-1de92f0f-8495-453d-b8f2-58cdebada4ac",
+  "indent": 0,
+  "location": "pages/item-1de92f0f-8495-453d-b8f2-58cdebada4ac/index.json",
+  "slug": "core-metadata",
+  "order": 1,
+  "parent": null,
+  "title": "Core Metadata & Design System",
+  "description": "",
+  "metadata": {
+    "created": 1793381314,
+    "updated": 1793381314,
+    "images": [],
+    "videos": []
+  },
+  "content": "<a11y-collapse heading-button=\"heading-button\">\n<h2 slot=\"heading\">Core metadata settings</h2>\n<div slot=\"content\">\n<p>Initial metadata settings associated with controls built into the interface:</p>\n<ul>\n<li><strong>type</strong> — is this a block level element OR a grid level element implying it can have things placed inside of it</li>\n<li><strong>canScale</strong> — hide the width scaler which is common</li>\n<li><strong>canEditSource</strong> — should users see the inline <code>view source</code> button</li>\n<li><strong>hideDefaultSettings</strong> — hides the designSystem and textual alignment options commonly present</li>\n<li><strong>designSystem</strong> — can define if accent, primary, card, text (font), and special design treatment form inputs should be shown</li>\n</ul>\n<code-sample type=\"json\" copy-clipboard-button=\"copy-clipboard-button\"><template>\"api\": \"1\",\n\"type\": \"element\",\n\"canScale\": false,\n\"canEditSource\": true,\n\"hideDefaultSettings\": true,\n\"designSystem\": {\n  \"accent\": true,\n  \"primary\": false,\n  \"card\": true,\n  \"text\": false,\n  \"designTreatment\": false\n}</template></code-sample>\n</div>\n</a11y-collapse>\n<a11y-collapse heading-button=\"heading-button\">\n<h2 slot=\"heading\">Gizmo</h2>\n<div slot=\"content\">\n<p>Gizmo provides the listing in the HAX editor — metadata and filtering that allows the button to render for users to click or drag onto the interface. This data also shows up in Merlin when typing to find related blocks.</p>\n<code-sample type=\"json\" copy-clipboard-button=\"copy-clipboard-button\"><template>\"gizmo\": {\n  \"title\": \"Block quote\",\n  \"description\": \"A well designed quote element with image of author\",\n  \"icon\": \"editor:format-quote\",\n  \"color\": \"blue\",\n  \"tags\": [\n    \"Layout\",\n    \"quote\",\n    \"blockquote\",\n    \"content\",\n    \"design\",\n    \"presentation\"\n  ],\n  \"meta\": {\n    \"author\": \"HAXTheWeb core team\"\n  }\n}</template></code-sample>\n</div>\n</a11y-collapse>"
+}

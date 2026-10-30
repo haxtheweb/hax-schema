@@ -1,5 +1,7 @@
 # hax-schema
 
+📖 **[Browse the rendered docs](https://haxtheweb.github.io/hax-schema/)**
+
 ## Onboarding
 
 New to the HAX ecosystem? **[Start here](https://github.com/haxtheweb/issues/blob/master/CONTRIBUTING.md)** — the single onboarding guide covers prerequisites, cloning the core repos, installing, and running each project locally.
@@ -148,8 +150,38 @@ Settings has 3 possible properties which have array of fields to generate. `conf
 }
 ```
 
+# Hax hooks
+While `haxProperties` (the schema above) describes how an element appears in the gizmo browser and how HAX configures it via settings forms, `haxHooks` lets an element participate in HAX lifecycle / state changes **without importing HAX**. This keeps elements decoupled from the editor: an element opts into deeper integration by declaring a `haxHooks()` method that maps hook names to method names on the element.
+
+```js
+// example from @haxtheweb/media-image/media-image.js
+haxHooks() {
+  return {
+    editModeChanged: "haxeditModeChanged",
+    activeElementChanged: "haxactiveElementChanged",
+    mediaSourceUpdated: "haxmediaSourceUpdated",
+  };
+}
+```
+
+The HAX store discovers these via `testHook` / `runHook` and invokes them at the right lifecycle moment. The callback name is your choice; the convention is `hax` + the hook name. Hooks available:
+
+- **`activeElementChanged`** — input `(activeElement, value)` where value is whether the element is active. @see `@haxtheweb/retro-card/retro-card.js`
+- **`editModeChanged`** — input `(value)` where value is the edit-mode state of the body. @see `@haxtheweb/retro-card/retro-card.js`
+- **`inlineContextMenu`** — allows dynamically adding buttons to the editor context menu. @see `@haxtheweb/multiple-choice/multiple-choice.js`
+- **`gizmoRegistration`** — lets an element rewrite the store when it is registered with HAX (e.g. register a custom app, extend `validGizmoTypes`). @see `@haxtheweb/github-preview/github-preview.js`
+- **`preProcessNodeToContent`** — input `(node)` where node is the item about to be converted to content for export. @see `@haxtheweb/editable-table/editable-table.js`
+- **`progressiveEnhancement`** — works on the element ONLY in the slotted / innerHTML area; must return content. @see `@haxtheweb/meme-maker/meme-maker.js`
+- **`postProcessNodeToContent`** — input `(content)` where content is an HTML blob about to be returned for export. @see `@haxtheweb/video-player/video-player.js`
+- **`preProcessInsertContent`** — input `(node)` where node is the item about to be inserted into the content. @see `@haxtheweb/multiple-choice/multiple-choice.js`
+- **`siteToSkeleton`** — input `(details)` where details is `{ uuidMap, direction }`; element rewrites its own site-item UUID references so skeleton structure + content stay in sync. @see `@haxtheweb/haxcms-elements/lib/ui-components/magic/site-collection-list.js`
+- **`mediaSourceUpdated`** — input `(path, store)` where path is the clean URL / relative path of a file just modified in place (rotate / compress / scale / transform / replace) and store is the HAXStore instance. The element checks whether its own image-bearing property references `path` (the store exposes `_mediaSrcMatches` to help) and, if so, refreshes its live preview without writing a cache-busting query into the persisted source property. @see `@haxtheweb/media-image/media-image.js`
+- **`processFileUpload`** — input `(values, response, store)` invoked from the generic tray upload / drag-drop path (`HAXStore.applyFileUploadTransform`) after a file is uploaded but before the element is inserted. `values` is `{source, title}` of the uploaded file (source is the raw uploaded path), `response` is the parsed upload response (`response.data.file.uuid` is present), and `store` is the HAXStore instance. Return `false` to decline (the file is inserted normally with its raw source). Return `{ fileUuid, operation, valueMapping, fallbackType? }` to run a `@site/updateFileByUuid` post-upload transform: the store calls the op, maps the result via the dot-path `valueMapping` (e.g. `"data.deckPath"`), and sets the inserted element source to the mapped path. `fallbackType` (optional) sets the gizmo type used for insertion if the transform fails, so the file degrades to e.g. a plain link instead of a broken specialized element. This is the generic-tray / drag-drop equivalent of the per-field schema `uploadTransform`; it lets an element own its post-upload conversion without the platform hard-coding its file type. @see `@haxtheweb/slide-deck/slide-deck.js`
+
+The authoritative source for the hook list is the comment block at the top of [HAXWiring.js](https://github.com/haxtheweb/webcomponents/blob/master/elements/hax-body-behaviors/lib/HAXWiring.js).
+
 # Save options
-Save options ensure that some built in clean up happens when the element is converted to an HTML String. There are [additional hooks for more advanced clean up](https://github.com/haxtheweb/webcomponents/blob/master/elements/hax-body-behaviors/lib/HAXWiring.js) but `wipeSlot` will remove any lightDom content the element might have. `unsetAttributes` is an `Array` of strings which will be removed prior to saving content to an HTML String.
+Save options ensure that some built in clean up happens when the element is converted to an HTML String. There are [additional hooks for more advanced clean up](https://github.com/haxtheweb/hax-body-behaviors/blob/master/elements/hax-body-behaviors/lib/HAXWiring.js) but `wipeSlot` will remove any lightDom content the element might have. `unsetAttributes` is an `Array` of strings which will be removed prior to saving content to an HTML String.
 
 ```json
 "saveOptions": {

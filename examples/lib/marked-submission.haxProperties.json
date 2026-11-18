@@ -1,0 +1,73 @@
+{
+  "api": "1",
+  "type": "element",
+  "canScale": true,
+  "canEditSource": false,
+  "gizmo": {
+    "title": "Marked submission",
+    "description": "A student's submission with the teacher's marks drawn over it and written feedback.",
+    "icon": "icons:create",
+    "color": "orange",
+    "tags": ["Assessment", "feedback", "drawing"],
+    "meta": { "author": "HAXTheWeb core team" }
+  },
+  "settings": {
+    "configure": [
+      {
+        "property": "src",
+        "title": "Submission",
+        "description": "Image of the work being marked",
+        "inputMethod": "haxupload",
+        "validationType": "url"
+      },
+      {
+        "property": "mode",
+        "title": "Mode",
+        "inputMethod": "select",
+        "options": {
+          "draw": "Draw",
+          "feedback": "Feedback",
+          "signature": "Signature"
+        }
+      },
+      {
+        "property": "drawing",
+        "title": "Marks",
+        "description": "Marks drawn over the submission",
+        "inputMethod": "doodle",
+        "backgroundProperty": "src",
+        "modeProperty": "mode"
+      },
+      {
+        "slot": "",
+        "title": "Feedback",
+        "description": "Written feedback shown under the submission",
+        "inputMethod": "code-editor"
+      }
+    ],
+    "advanced": [
+      {
+        "attribute": "lang",
+        "title": "Feedback language",
+        "description": "Language the feedback is written in",
+        "inputMethod": "haxcms-language-picker",
+        "includeRegions": "featured",
+        "popularFirst": true,
+        "allowCustom": true
+      }
+    ]
+  },
+  "saveOptions": {
+    "unsetAttributes": ["editing"]
+  },
+  "demoSchema": [
+    {
+      "tag": "marked-submission",
+      "properties": {
+        "src": "https://example.com/essay-page-1.png",
+        "mode": "feedback"
+      },
+      "content": "<p>Strong thesis. Cite the second source in the conclusion.</p>"
+    }
+  ]
+}

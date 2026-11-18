@@ -85,8 +85,10 @@ function elementChecks (doc) {
       if ((f.inputMethod === 'select' || f.inputMethod === 'radio') && !f.options && !f.itemsList) {
         errors.push({ path: p, message: `inputMethod "${f.inputMethod}" needs "options" or "itemsList"` })
       }
-      if (Array.isArray(f.options) && f.inputMethod !== 'iconpicker') {
-        errors.push({ path: `${p}/options`, message: `an array of options is only for inputMethod "iconpicker" (icon names); "${f.inputMethod}" needs a value -> label map` })
+      if (Array.isArray(f.options) && !['iconpicker', 'haxcms-language-picker'].includes(f.inputMethod)) {
+        errors.push({ path: `${p}/options`, message: `an array of options is only for inputMethod "iconpicker" (icon names) or "haxcms-language-picker" (language codes); "${f.inputMethod}" needs a value -> label map` })
+      } else if (Array.isArray(f.options) && f.inputMethod === 'iconpicker' && f.options.some((o) => typeof o !== 'string')) {
+        errors.push({ path: `${p}/options`, message: 'iconpicker options are icon names (strings)' })
       }
       if (f.property !== undefined && /-/.test(f.property)) {
         warnings.push({ path: `${p}/property`, message: `property "${f.property}" looks dash-case; use the camelCase JS property name, or "attribute" for an HTML attribute` })

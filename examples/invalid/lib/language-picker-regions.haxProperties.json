@@ -1,0 +1,35 @@
+{
+  "api": "1",
+  "type": "element",
+  "canScale": false,
+  "canEditSource": true,
+  "gizmo": {
+    "title": "Phrase",
+    "description": "Invalid example: includeRegions is \"featured\", \"all\" or \"none\"",
+    "icon": "icons:extension",
+    "color": "grey",
+    "tags": [
+      "Other"
+    ]
+  },
+  "settings": {
+    "configure": [
+      {
+        "property": "lang",
+        "title": "Language",
+        "inputMethod": "haxcms-language-picker",
+        "includeRegions": true
+      }
+    ],
+    "advanced": []
+  },
+  "demoSchema": [
+    {
+      "tag": "phrase-card",
+      "properties": {
+        "lang": "en-US"
+      },
+      "content": ""
+    }
+  ]
+}

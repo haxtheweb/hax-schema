@@ -1,0 +1,40 @@
+{
+  "api": "1",
+  "type": "element",
+  "canScale": false,
+  "canEditSource": true,
+  "gizmo": {
+    "title": "Badge",
+    "description": "Invalid example: iconpicker options as objects instead of icon names",
+    "icon": "icons:extension",
+    "color": "grey",
+    "tags": [
+      "Other"
+    ]
+  },
+  "settings": {
+    "configure": [
+      {
+        "property": "icon",
+        "title": "Icon",
+        "inputMethod": "iconpicker",
+        "options": [
+          {
+            "value": "icons:star",
+            "label": "Star"
+          }
+        ]
+      }
+    ],
+    "advanced": []
+  },
+  "demoSchema": [
+    {
+      "tag": "badge-icon",
+      "properties": {
+        "icon": "icons:star"
+      },
+      "content": ""
+    }
+  ]
+}

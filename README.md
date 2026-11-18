@@ -51,7 +51,7 @@ The schema was checked against every `*.haxProperties.json` in the webcomponents
    **Custom keys must start with `x-`** (for example `"x-analytics": {...}`), at the top level or inside `gizmo`, a settings field, a demo, `saveOptions` or `documentation`. HAX ignores them; the validator accepts them; everything else is checked strictly.
 2. **Each settings field targets one of `property` (camelCase JS property), `attribute` (dash-case HTML attribute) or `slot`** (`""` = default slot). Fields with none are dropped.
 3. **`saveOptions` is top level**, never inside `settings`, and `unsetAttributes` uses dash-case names (`element-visible`): HAX dash-cases every property before applying it, so camelCase entries never match.
-4. **`select` / `radio` need `options`** (value -> label map) or `itemsList`.
+4. **`select` / `radio` need `options`** (value -> label map) or `itemsList`. An array of `options` is only for `iconpicker` (icon names) and `haxcms-language-picker` (language codes, or `{ "value", "label" }`).
 5. **The first `demoSchema` entry is what gets inserted**; any element with a `gizmo` needs at least one, and its `tag` must be the element's tag.
 6. **Name the field each locale entry translates** with `property`, `attribute` or `slot`. Named entries are matched to the base field, so reordering the base file is safe. Entries without one fall back to array position and break when fields move.
 
@@ -128,7 +128,7 @@ Settings provide the editing form fields the user sees. This is a simplified ver
 - **Organization**
   - **tabs** - visual wrapper which groups sub-fields into defined tabs, hiding non-active tabs
   - **fieldset** - visual wrapper which groups sub-fields within a border
-  - **array** - visual wrapper which groups sub-fields as an array of objects (Users can dynamically expand this array with an "add item" button)
+  - **array** - visual wrapper which groups sub-fields as an array of objects (users can dynamically expand this array with an "add item" button)
   - **collapse** - visual wrapper which groups sub-fields under a collapsible tag
   - **object** - groups sub-fields into one object value
 - **Controls**
@@ -146,15 +146,17 @@ Settings provide the editing form fields the user sees. This is a simplified ver
   - **colorpicker** - select a color (list)
   - **hax-palette-picker** - pick a DDD palette
   - **haxcms-theme-picker** - pick a HAXcms theme
+  - **haxcms-language-picker** - pick a language (a BCP 47 code such as `en-US`); `includeRegions` (`featured`, `all` or `none`) sets which regional variants are listed, `popularFirst` lists the most used languages first, `allowCustom` accepts a well-formed code that is not listed, and `options` may be an array of codes (or `{ "value", "label" }`) to offer instead of the full list
   - **iconpicker** - select an icon; `options` may be an array of icon names to limit the choices
   - **code-editor** - Monaco editor with line-endings and color-coding
   - **code** / **markup** / **html-block** - HTML / code value
   - **md-block** - markdown value
   - **fileupload** - file upload (not hax specific)
-  - **haxupload** - file upload field wired to talk to h-a-x editor appStore
+  - **haxupload** - file upload field wired to talk to the HAX editor appStore
   - **screenRecorder** - record the screen into a file
   - **srcset** - responsive image source set
   - **image-framing** - set how a photo is cropped at each screen size by picking its focal point; reads the photo from the setting named in `sourceProperty` and writes the focal point (0-100) to the settings named in `focalXProperty` and `focalYProperty`
+  - **doodle** - draw on an image (draw, feedback or signature); a preview in the settings panel with a dialog that holds the full editor, saving a transparent PNG of the marks; reads the image drawn over from the setting named in `backgroundProperty` and the mode from the setting named in `modeProperty`
   - **date-time** - select YYYY-MM-DDThh:mmZ string
   - **datepicker** - select YYYY-MM-DD string
   - **monthpicker** - select YYYY-MM string
@@ -170,9 +172,11 @@ Common field keys beyond `title` / `description` / `inputMethod`:
 | `property` / `attribute` / `slot` | what the field edits (exactly one; `slot: ""` is the default slot) |
 | `required`, `disabled`, `hidden` | booleans |
 | `validationType`, `validation` | extra validation (`url`, `text`) and a regex string (default `.*`) |
-| `options` / `itemsList` | `select` / `radio` choices: `{ "value": "Label" }` or `[{ "value": "v", "text": "Label" }]`; for `iconpicker`, `options` is an array of icon names (`["icons:star", ...]`) |
+| `options` / `itemsList` | `select` / `radio` choices: `{ "value": "Label" }` or `[{ "value": "v", "text": "Label" }]`; for `iconpicker`, `options` is an array of icon names (`["icons:star", ...]`); for `haxcms-language-picker`, an array of language codes or `{ "value", "label" }` |
 | `min`, `max`, `step`, `suffix` | `number` / `slider` |
 | `sourceProperty`, `focalXProperty`, `focalYProperty` | `image-framing`: the settings that hold the photo and the focal point's horizontal and vertical position (0-100) |
+| `backgroundProperty`, `modeProperty` | `doodle`: the settings that hold the image drawn over and the mode (`draw`, `feedback` or `signature`) |
+| `includeRegions`, `popularFirst`, `allowCustom` | `haxcms-language-picker`: which regional variants are listed (`featured`, `all`, `none`), most used first, and whether an unlisted code is accepted |
 | `properties`, `itemLabel`, `expanded`, `hideReorder`, `hideDuplicate` | `array` / `object` / grouping fields |
 | `slotWrapper`, `allowedSlotWrappers`, `slotAttributes` | tag (default `span`) and attributes used to wrap slot content |
 | `accepts`, `uploadRequirements`, `uploadTransform`, `fileActions`, `noCamera`, `noVoiceRecord`, `noScreenRecord` | `haxupload` / `fileupload` behavior |

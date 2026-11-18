@@ -28,6 +28,7 @@ const check = (file, expectValid, expectMessages = []) => {
 check('example.json', true)
 check('examples/lib/feature-card.haxProperties.json', true)
 check('examples/lib/two-column-layout.haxProperties.json', true)
+check('examples/lib/marked-submission.haxProperties.json', true)
 check('examples/locales/feature-card.es.haxProperties.json', true)
 check('examples/invalid/lib/common-mistakes.haxProperties.json', false, [
   '"desc"; prefix custom keys with "x-"',
@@ -40,6 +41,12 @@ check('examples/invalid/lib/common-mistakes.haxProperties.json', false, [
 ])
 check('examples/invalid/lib/array-options-on-select.haxProperties.json', false, [
   'an array of options is only for inputMethod "iconpicker"'
+])
+check('examples/invalid/lib/iconpicker-option-objects.haxProperties.json', false, [
+  'iconpicker options are icon names (strings)'
+])
+check('examples/invalid/lib/language-picker-regions.haxProperties.json', false, [
+  'includeRegions'
 ])
 check('examples/invalid/locales/common-mistakes.fr.haxProperties.json', false, [
   '("developer")',

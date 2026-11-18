@@ -244,6 +244,7 @@
         "iconpicker",
         "hax-palette-picker",
         "haxcms-theme-picker",
+        "haxcms-language-picker",
         "date-time",
         "datepicker",
         "monthpicker",
@@ -254,6 +255,7 @@
         "screenRecorder",
         "srcset",
         "image-framing",
+        "doodle",
         "code",
         "code-editor",
         "markup",
@@ -351,7 +353,7 @@
           ]
         },
         "options": {
-          "description": "For select / radio: map of stored value -> label. For iconpicker: array of icon names to offer (passed to simple-icon-picker's `icons`).",
+          "description": "For select / radio: map of stored value -> label. For iconpicker: array of icon names to offer (passed to simple-icon-picker's `icons`). For haxcms-language-picker: array of language codes, or of { value, label }, to offer instead of the full list.",
           "anyOf": [
             {
               "type": "object",
@@ -362,7 +364,26 @@
             {
               "type": "array",
               "items": {
-                "type": "string"
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "value"
+                    ],
+                    "properties": {
+                      "value": {
+                        "type": "string"
+                      },
+                      "label": {
+                        "type": "string"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                ]
               }
             }
           ]
@@ -413,6 +434,33 @@
           "description": "image-framing: the setting that holds the focal point's vertical position (0-100).",
           "type": "string",
           "minLength": 1
+        },
+        "backgroundProperty": {
+          "description": "doodle: the setting that holds the image drawn over (the background shown under the marks).",
+          "type": "string",
+          "minLength": 1
+        },
+        "modeProperty": {
+          "description": "doodle: the setting that holds the drawing mode (draw, feedback or signature).",
+          "type": "string",
+          "minLength": 1
+        },
+        "includeRegions": {
+          "description": "haxcms-language-picker: which regional variants (en-GB, pt-BR) are listed. Any code stays selectable.",
+          "enum": [
+            "featured",
+            "all",
+            "none"
+          ],
+          "default": "featured"
+        },
+        "popularFirst": {
+          "description": "haxcms-language-picker: list the most used languages before the rest.",
+          "type": "boolean"
+        },
+        "allowCustom": {
+          "description": "haxcms-language-picker: accept a language code that is not in the list.",
+          "type": "boolean"
         },
         "properties": {
           "description": "Sub-fields for array / object / fieldset / tabs / collapse.",

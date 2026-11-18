@@ -39,6 +39,8 @@ content: >-
   <li><strong>collapse</strong> — visual wrapper which groups sub-fields under a
   collapsible tag</li>
 
+  <li><strong>object</strong> — groups sub-fields into one object value</li>
+
   </ul>
 
   </div>
@@ -53,13 +55,16 @@ content: >-
 
   <ul>
 
-  <li><strong>textfield</strong> — text input</li>
+  <li><strong>textfield</strong> — text input (the default, and the fallback for
+  any unknown value)</li>
 
   <li><strong>textarea</strong> — resizeable multi-line text input</li>
 
   <li><strong>alt</strong> — alt data validation</li>
 
   <li><strong>url</strong> — url data validation</li>
+
+  <li><strong>combo</strong> — text input with suggestions</li>
 
   <li><strong>select</strong> — select list</li>
 
@@ -75,15 +80,48 @@ content: >-
 
   <li><strong>colorpicker</strong> — select a color (list)</li>
 
-  <li><strong>iconpicker</strong> — select an icon</li>
+  <li><strong>hax-palette-picker</strong> — pick a DDD palette</li>
+
+  <li><strong>haxcms-theme-picker</strong> — pick a HAXcms theme</li>
+
+  <li><strong>haxcms-language-picker</strong> — pick a language (a BCP 47 code
+  such as <code>en-US</code>); <code>includeRegions</code>
+  (<code>featured</code>, <code>all</code> or <code>none</code>) sets which
+  regional variants are listed, <code>popularFirst</code> lists the most used
+  languages first, <code>allowCustom</code> accepts a well-formed code that is
+  not listed, and <code>options</code> may be an array of codes (or <code>{
+  "value", "label" }</code>) to offer instead of the full list</li>
+
+  <li><strong>iconpicker</strong> — select an icon; <code>options</code> may be
+  an array of icon names to limit the choices</li>
 
   <li><strong>code-editor</strong> — Monaco editor with line-endings and
   color-coding</li>
+
+  <li><strong>code</strong> / <strong>markup</strong> /
+  <strong>html-block</strong> — HTML / code value</li>
+
+  <li><strong>md-block</strong> — markdown value</li>
 
   <li><strong>fileupload</strong> — file upload (not hax specific)</li>
 
   <li><strong>haxupload</strong> — file upload field wired to talk to the HAX
   editor appStore</li>
+
+  <li><strong>screenRecorder</strong> — record the screen into a file</li>
+
+  <li><strong>srcset</strong> — responsive image source set</li>
+
+  <li><strong>image-framing</strong> — set how a photo is cropped at each screen
+  size by picking its focal point; reads the photo from the setting named in
+  <code>sourceProperty</code> and writes the focal point (0-100) to the settings
+  named in <code>focalXProperty</code> and <code>focalYProperty</code></li>
+
+  <li><strong>doodle</strong> — draw on an image (draw, feedback or signature);
+  a preview in the settings panel with a dialog that holds the full editor,
+  saving a transparent PNG of the marks; reads the image drawn over from the
+  setting named in <code>backgroundProperty</code> and the mode from the setting
+  named in <code>modeProperty</code></li>
 
   <li><strong>date-time</strong> — select YYYY-MM-DDThh:mmZ string</li>
 
@@ -97,9 +135,13 @@ content: >-
 
   </ul>
 
-  <p>Review the source at <a
-  href="https://github.com/haxtheweb/webcomponents/blob/master/elements/hax-body-behaviors/lib/HAXFields.js">HAXFields.js</a>
-  for the latest additions.</p>
+  <p>The list matches <code>fieldsConversion.inputMethod</code> in <a
+  href="https://github.com/haxtheweb/webcomponents/blob/master/elements/simple-fields/simple-fields.js">simple-fields.js</a>
+  plus the additions in <a
+  href="https://github.com/haxtheweb/webcomponents/blob/master/elements/hax-body-behaviors/lib/HAXFields.js">HAXFields.js</a>;
+  an unknown value falls back to a text field. An array of <code>options</code>
+  is only for <code>iconpicker</code> (icon names) and
+  <code>haxcms-language-picker</code> (language codes).</p>
 
   </div>
 

@@ -154,6 +154,7 @@ Settings provide the editing form fields the user sees. This is a simplified ver
   - **haxupload** - file upload field wired to talk to h-a-x editor appStore
   - **screenRecorder** - record the screen into a file
   - **srcset** - responsive image source set
+  - **image-framing** - set how a photo is cropped at each screen size by picking its focal point; reads the photo from the setting named in `sourceProperty` and writes the focal point (0-100) to the settings named in `focalXProperty` and `focalYProperty`
   - **date-time** - select YYYY-MM-DDThh:mmZ string
   - **datepicker** - select YYYY-MM-DD string
   - **monthpicker** - select YYYY-MM string
@@ -171,6 +172,7 @@ Common field keys beyond `title` / `description` / `inputMethod`:
 | `validationType`, `validation` | extra validation (`url`, `text`) and a regex string (default `.*`) |
 | `options` / `itemsList` | `select` / `radio` choices: `{ "value": "Label" }` or `[{ "value": "v", "text": "Label" }]`; for `iconpicker`, `options` is an array of icon names (`["icons:star", ...]`) |
 | `min`, `max`, `step`, `suffix` | `number` / `slider` |
+| `sourceProperty`, `focalXProperty`, `focalYProperty` | `image-framing`: the settings that hold the photo and the focal point's horizontal and vertical position (0-100) |
 | `properties`, `itemLabel`, `expanded`, `hideReorder`, `hideDuplicate` | `array` / `object` / grouping fields |
 | `slotWrapper`, `allowedSlotWrappers`, `slotAttributes` | tag (default `span`) and attributes used to wrap slot content |
 | `accepts`, `uploadRequirements`, `uploadTransform`, `fileActions`, `noCamera`, `noVoiceRecord`, `noScreenRecord` | `haxupload` / `fileupload` behavior |

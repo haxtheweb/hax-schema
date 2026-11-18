@@ -66,6 +66,15 @@
         "inputMethod": "alt"
       },
       {
+        "property": "framing",
+        "title": "Framing",
+        "description": "Which part of the image stays in view when it is cropped",
+        "inputMethod": "image-framing",
+        "sourceProperty": "image",
+        "focalXProperty": "focalX",
+        "focalYProperty": "focalY"
+      },
+      {
         "property": "icon",
         "title": "Icon",
         "description": "Icon shown next to the heading",
